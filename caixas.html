@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caixas</title>
+</head>
+<style>
+    html {
+        border: 1px solid red;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(360deg, purple, orange);
+    }
+    body {
+        border: 1px solid green;
+        /* margin: 0; */
+    }
+    h1 {
+        border: 1px solid blue;
+        /* padding:0; */
+        /* margin: 100px 50px 20px -1px; */
+        /* margin: 10px; */
+        margin: 10px 20px;
+        /* margin-top: 10px;
+           margin-bottom: 1px;
+           margin-right: 10px;
+           margin-left: 20px; */
+      }
+
+    div {
+        border: 1px solid purple;
+        border-top-left-radius: 30px;
+        border-top-right-radius: 30px;
+        border-bottom-left-radius: 2px;
+        border-bottom: 4px dotted red;
+        text-align: center;
+        /*Alinha texto centro*/
+    }
+
+    span {
+        border: 1px dotted yellow;
+        margin: 0 auto;
+        text-align: center;
+        display: inline-block;
+        /* padding: 20px; */
+        /* width: 200px; */
+    }
+
+    #caixa {
+        display: flex;
+    }
+    .caixinhas {
+        background: linear-gradient(to right, red, green);
+        padding: 10px;
+        margin: 0 auto;
+    }
+
+    .font-p {
+        font-size: 5px;
+    }
+
+    .center-span {
+        margin: 0 auto;
+    }
+</style>
+
+<body>
+    <h1>Caixa</h1>
+    <!-- <h1>Caixa</h1> -->
+    <!-- <h1>Caixa</h1> -->
+    <div>
+        <h2>Caixa</h2>
+    </div>
+    <div>Caixa</div>
+
+    <div class="center-span">
+        <span>Caixas</span>
+        <span>Caixas</span>
+        <span>Caixas</span>
+        <span>Caixas</span>
+    </div>
+    <div id="caixa">
+        <div class="font-p caixinhas">Caixinhas</div>
+        <div class="font-p caixinhas">Caixinhas</div>
+        <div class="font-p caixinhas">Caixinhas</div>
+    </div>
+
+</body>
+</html>
