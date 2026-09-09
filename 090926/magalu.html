@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magalu</title>
+</head>
+<style>
+    header {
+        background-color: #2196f3;
+    }
+
+    header img {
+        width: 100px;
+    }
+
+
+
+    #banner {
+        /* background-image: url("img/banner.png"); */
+        background-color: blueviolet;
+        /* height: 200px; */
+    }
+
+    #banner img {
+        width: 400px;
+    }
+
+    #novidade {
+        /* display: flex; */
+    }
+
+    #novidades div {
+        display: flex;
+    }
+
+    #novidades div img {
+        width: 100px;
+    }
+
+    span {
+        background-color: white;
+        color: #2196f3;
+        font-size: 10px;
+    }
+
+    /* 1. Transforma o <nav> em flex para colocar a lista (ul) e o span lado a lado */
+    nav {
+        display: flex;
+        justify-content: space-between;
+        /* Espaça a lista de um lado e o span do outro */
+        align-items: center;
+        /* Alinha os itens verticalmente ao centro */
+        padding: 10px 20px;
+        /* background-color: #f4f4f4; Cor de fundo opcional */
+    }
+
+    /* 2. Transforma a <ul> em flex para colocar os itens (li) lado a lado */
+    nav ul {
+        display: flex;
+        list-style: none;
+        /* Remove as bolinhas da lista */
+        margin: 0;
+        padding: 0;
+        gap: 10px;
+        /* Espaço entre cada item do menu */
+    }
+
+    /* 3. Estilização opcional para os links */
+    nav ul li a {
+        text-decoration: none;
+        color: #fff;
+        font-weight: 500;
+        font-size: 10px;
+    }
+
+    nav ul li a:hover {
+        color: #007bff;
+        /* Muda a cor ao passar o mouse */
+    }
+
+    /* 4. Estilização opcional para o span */
+    nav span {
+        font-weight: bold;
+        color: #007bff;
+    }
+
+    footer {
+        background-color: #007bff;
+        color: #fff;
+        font-size: 10px;
+    }
+
+    footer strong {
+        color: blueviolet;
+    }
+
+    h2 {
+        font-size: 14px;
+    }
+</style>
+
+<body>
+    <header>
+        <img src="img/logo-magalu.png">
+        <nav>
+            <ul>
+                <li><a href="">Ofertas do dia</a></li>
+                <li><a href="">Celulares</a></li>
+                <li><a href="">Eletrodomésticos</a></li>
+                <li><a href="">TV e Vídeo</a></li>
+                <li><a href="">Informática</a></li>
+            </ul>
+            <span>compre pelo tel 0800 000 000</span>
+
+        </nav>
+    </header>
+    <section id="banner">
+        <img src="img/banner.png" alt="Banner Promoção">
+
+    </section>
+    <section id="novidades">
+        <h2>Novidades que Selecionamos</h2>
+        <div id="container">
+            <div><img src="img/produto1.jpg" alt=""></div>
+            <div><img src="img/produto2.jpg" alt=""></div>
+            <div><img src="img/produto3.jpg" alt=""></div>
+            <div><img src="img/produto4.jpg" alt=""></div>
+            <div><img src="img/produto5.jpg" alt=""></div>
+        </div>
+    </section>
+
+    <footer>
+        <p><strong>Megazine Luiza</strong> &copy; todos os direitos reservados.</p>
+    </footer>
+
+</body>
+
+</html>
