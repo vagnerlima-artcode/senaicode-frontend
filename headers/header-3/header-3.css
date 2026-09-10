@@ -1,0 +1,43 @@
+/* header 3 */
+
+.logo img{
+  width: 200px;
+}
+.header-cta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background: linear-gradient(135deg, #6366f1, #a855f7);
+  color: white;
+  font-family: sans-serif;
+}
+
+.header-cta .nav-links {
+  display: flex;
+  gap: 30px;
+}
+
+.header-cta .nav-links a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.header-cta .nav-links a:hover{
+    opacity: 0.6;
+}
+
+.header-cta .btn-cta {
+  background-color: #ffffff;
+  color: #6366f1;
+  padding: 8px 18px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.header-cta .btn-cta:hover{
+  opacity: 0.8;
+  text-decoration: underline;
+}
