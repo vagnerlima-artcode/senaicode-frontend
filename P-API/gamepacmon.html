@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pokémon Pac-Man Adventure</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    body {
+      background-color: #111;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    h1 {
+      color: #ffcb05;
+      text-shadow: 3px 3px 0px #3b4cca;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    /* Tela de Seleção */
+    #selection-screen {
+      background: #1e1e2f;
+      padding: 25px;
+      border-radius: 12px;
+      border: 3px solid #ffcb05;
+      box-shadow: 0 0 20px rgba(255, 203, 5, 0.4);
+      text-align: center;
+      max-width: 500px;
+      width: 90%;
+    }
+
+    .preset-list {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin: 20px 0;
+    }
+
+    .card-pokemon {
+      background: #2a2a40;
+      border: 2px solid transparent;
+      border-radius: 8px;
+      padding: 10px;
+      cursor: pointer;
+      transition: all 0.2s;
+      width: 80px;
+    }
+
+    .card-pokemon:hover, .card-pokemon.selected {
+      border-color: #ffcb05;
+      background: #3b3b5c;
+      transform: scale(1.05);
+    }
+
+    .card-pokemon img {
+      width: 50px;
+      height: 50px;
+    }
+
+    .card-pokemon span {
+      display: block;
+      font-size: 12px;
+      text-transform: capitalize;
+      margin-top: 5px;
+    }
+
+    .search-box {
+      margin-top: 15px;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      width: 60%;
+      font-size: 14px;
+    }
+
+    button {
+      background: #ffcb05;
+      color: #111;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    button:hover {
+      background: #ffe066;
+    }
+
+    /* Container do Jogo */
+    #game-container {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hud {
+      display: flex;
+      justify-content: space-between;
+      width: 456px;
+      margin-bottom: 10px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    canvas {
+      border: 4px solid #3b4cca;
+      background-color: #000;
+      box-shadow: 0 0 15px rgba(59, 76, 202, 0.6);
+    }
+
+    .controls-hint {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #aaa;
+    }
+
+    .game-over-overlay {
+      position: absolute;
+      background: rgba(0, 0, 0, 0.85);
+      width: 456px;
+      height: 480px;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-radius: 5px;
+    }
+
+    .game-over-overlay h2 {
+      font-size: 32px;
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Poké-PACMAN</h1>
+
+  <!-- 1. TELA DE SELEÇÃO DE PERSONAGEM -->
+  <div id="selection-screen">
+    <h2>Escolha seu Pokémon!</h2>
+    <div class="preset-list" id="presets">
+      <!-- Injetado via JS (Pikachu, Charmander, Bulbasaur, Squirtle, Gengar) -->
+    </div>
+
+    <p>Ou digite outro nome/ID:</p>
+    <div class="search-box">
+      <input type="text" id="customInput" placeholder="Ex: eevee, 150...">
+      <button onclick="buscarEIniciar()">Buscar</button>
+    </div>
+  </div>
+
+  <!-- 2. TELA DO JOGO -->
+  <div id="game-container">
+    <div class="hud">
+      <div>PONTOS: <span id="score">0</span></div>
+      <div>VIDAS: <span id="lives">3</span></div>
+    </div>
+
+    <div style="position: relative;">
+      <canvas id="canvas" width="456" height="480"></canvas>
+      
+      <!-- Overlay de Fim de Jogo -->
+      <div class="game-over-overlay" id="overlay">
+        <h2 id="statusText">GAME OVER</h2>
+        <button onclick="reiniciarJogo()">Jogar Novamente</button>
+      </div>
+    </div>
+
+    <p class="controls-hint">Use as setas (<b>← ↑ → ↓</b>) ou <b>WASD</b> para mover.</p>
+  </div>
+
+  <script>
+    // --- MAPA DO LABIRINTO (19x20) ---
+    // 1: Parede | 2: Ponto (Doces/Pokébolas) | 0: Espaço Vazio
+    const mapTemplate = [
+      [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+      [1,2,2,2,2,2,2,2,2,1,2,2,2,2,2,2,2,2,1],
+      [1,2,1,1,2,1,1,1,2,1,2,1,1,1,2,1,1,2,1],
+      [1,2,1,1,2,1,1,1,2,1,2,1,1,1,2,1,1,2,1],
+      [1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1],
+      [1,2,1,1,2,1,2,1,1,1,1,1,2,1,2,1,1,2,1],
+      [1,2,2,2,2,1,2,2,2,1,2,2,2,1,2,2,2,2,1],
+      [1,1,1,1,2,1,1,1,0,1,0,1,1,1,2,1,1,1,1],
+      [0,0,0,1,2,1,0,0,0,0,0,0,0,1,2,1,0,0,0],
+      [1,1,1,1,2,1,0,1,1,0,1,1,0,1,2,1,1,1,1],
+      [0,0,0,0,2,0,0,1,0,0,0,1,0,0,2,0,0,0,0],
+      [1,1,1,1,2,1,0,1,1,1,1,1,0,1,2,1,1,1,1],
+      [0,0,0,1,2,1,0,0,0,0,0,0,0,1,2,1,0,0,0],
+      [1,1,1,1,2,1,0,1,1,1,1,1,0,1,2,1,1,1,1],
+      [1,2,2,2,2,2,2,2,2,1,2,2,2,2,2,2,2,2,1],
+      [1,2,1,1,2,1,1,1,2,1,2,1,1,1,2,1,1,2,1],
+      [1,2,2,1,2,2,2,2,2,0,2,2,2,2,2,1,2,2,1],
+      [1,1,2,1,2,1,2,1,1,1,1,1,2,1,2,1,2,1,1],
+      [1,2,2,2,2,1,2,2,2,1,2,2,2,1,2,2,2,2,1],
+      [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+    ];
+
+    const TILE_SIZE = 24;
+    const presets = [
+      { id: 25, name: 'Pikachu' },
+      { id: 4, name: 'Charmander' },
+      { id: 1, name: 'Bulbasaur' },
+      { id: 7, name: 'Squirtle' },
+      { id: 94, name: 'Gengar' }
+    ];
+
+    let canvas, ctx;
+    let currentMap = [];
+    let playerImg = new Image();
+    let ghostImg = new Image();
+    let score = 0;
+    let lives = 3;
+    let totalDots = 0;
+    let gameLoopId = null;
+
+    // Entidades do jogo
+    let player = { x: 9 * TILE_SIZE, y: 16 * TILE_SIZE, dirX: 0, dirY: 0, nextDirX: 0, nextDirY: 0, speed: 2 };
+    let ghosts = [
+      { x: 9 * TILE_SIZE, y: 8 * TILE_SIZE, dirX: 1, dirY: 0, speed: 2, color: 'red' },
+      { x: 9 * TILE_SIZE, y: 10 * TILE_SIZE, dirX: -1, dirY: 0, speed: 2, color: 'pink' }
+    ];
+
+    // Carregar Sprite do Fantasma (Gastly)
+    ghostImg.src = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/92.png';
+
+    // 1. CARREGAR PRESETS DE SELEÇÃO
+    function carregarPresets() {
+      const container = document.getElementById('presets');
+      presets.forEach(p => {
+        const card = document.createElement('div');
+        card.className = 'card-pokemon';
+        card.innerHTML = `
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${p.id}.png" alt="${p.name}">
+          <span>${p.name}</span>
+        `;
+        card.onclick = () => iniciarJogoComPokemon(`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${p.id}.png`);
+        container.appendChild(card);
+      });
+    }
+
+    // 2. BUSCAR POKÉMON DA API
+    async function buscarEIniciar() {
+      const input = document.getElementById('customInput').value.toLowerCase().trim();
+      if (!input) return alert('Digite o nome ou ID de um Pokémon!');
+
+      try {
+        const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${input}`);
+        if (!res.ok) throw new Error();
+        const data = await res.json();
+        iniciarJogoComPokemon(data.sprites.front_default);
+      } catch (err) {
+        alert('Pokémon não encontrado!');
+      }
+    }
+
+    // 3. INICIALIZAR O JOGO
+    function iniciarJogoComPokemon(spriteUrl) {
+      playerImg.src = spriteUrl;
+      
+      document.getElementById('selection-screen').style.display = 'none';
+      document.getElementById('game-container').style.display = 'flex';
+
+      canvas = document.getElementById('canvas');
+      ctx = canvas.getContext('2d');
+
+      document.addEventListener('keydown', escutarTeclas);
+      
+      reiniciarJogo();
+    }
+
+    function reiniciarJogo() {
+      // Clona o mapa e conta os doces
+      currentMap = mapTemplate.map(row => [...row]);
+      totalDots = 0;
+      currentMap.forEach(row => row.forEach(tile => { if (tile === 2) totalDots++; }));
+
+      score = 0;
+      lives = 3;
+      atualizarHUD();
+
+      resetarPosicoes();
+      document.getElementById('overlay').style.display = 'none';
+
+      if (gameLoopId) cancelAnimationFrame(gameLoopId);
+      gameLoop();
+    }
+
+    function resetarPosicoes() {
+      player.x = 9 * TILE_SIZE;
+      player.y = 16 * TILE_SIZE;
+      player.dirX = 0;
+      player.dirY = 0;
+      player.nextDirX = 0;
+      player.nextDirY = 0;
+
+      ghosts[0].x = 9 * TILE_SIZE;
+      ghosts[0].y = 8 * TILE_SIZE;
+      ghosts[1].x = 9 * TILE_SIZE;
+      ghosts[1].y = 10 * TILE_SIZE;
+    }
+
+    // 4. CONTROLES DO JOGADOR
+    function escutarTeclas(e) {
+      switch (e.key) {
+        case 'ArrowUp': case 'w': case 'W': player.nextDirX = 0; player.nextDirY = -1; break;
+        case 'ArrowDown': case 's': case 'S': player.nextDirX = 0; player.nextDirY = 1; break;
+        case 'ArrowLeft': case 'a': case 'A': player.nextDirX = -1; player.nextDirY = 0; break;
+        case 'ArrowRight': case 'd': case 'D': player.nextDirX = 1; player.nextDirY = 0; break;
+      }
+    }
+
+    // 5. LÓGICA DE MOVIMENTO E COLISÃO
+    function ehParede(x, y) {
+      const tileX = Math.floor(x / TILE_SIZE);
+      const tileY = Math.floor(y / TILE_SIZE);
+      return currentMap[tileY] && currentMap[tileY][tileX] === 1;
+    }
+
+    function moverJogador() {
+      // Tenta mudar de direção no alinhamento do grid
+      if (player.x % TILE_SIZE === 0 && player.y % TILE_SIZE === 0) {
+        if (!ehParede(player.x + player.nextDirX * TILE_SIZE, player.y + player.nextDirY * TILE_SIZE)) {
+          player.dirX = player.nextDirX;
+          player.dirY = player.nextDirY;
+        }
+      }
+
+      // Move se não houver parede na frente
+      if (!ehParede(player.x + player.dirX * player.speed, player.y + player.dirY * player.speed)) {
+        player.x += player.dirX * player.speed;
+        player.y += player.dirY * player.speed;
+      }
+
+      // Comer Pontos (Pokébolas/Doces)
+      const centerGridX = Math.floor((player.x + TILE_SIZE / 2) / TILE_SIZE);
+      const centerGridY = Math.floor((player.y + TILE_SIZE / 2) / TILE_SIZE);
+
+      if (currentMap[centerGridY] && currentMap[centerGridY][centerGridX] === 2) {
+        currentMap[centerGridY][centerGridX] = 0;
+        score += 10;
+        totalDots--;
+        atualizarHUD();
+
+        if (totalDots === 0) finalizarJogo(true);
+      }
+    }
+
+    function moverFantasmas() {
+      ghosts.forEach(ghost => {
+        if (ghost.x % TILE_SIZE === 0 && ghost.y % TILE_SIZE === 0) {
+          const direcoes = [
+            { x: 1, y: 0 }, { x: -1, y: 0 },
+            { x: 0, y: 1 }, { x: 0, y: -1 }
+          ];
+
+          // Filtra direções válidas (não paredes)
+          const validas = direcoes.filter(d => !ehParede(ghost.x + d.x * TILE_SIZE, ghost.y + d.y * TILE_SIZE));
+
+          if (validas.length > 0) {
+            const novaDir = validas[Math.floor(Math.random() * validas.length)];
+            ghost.dirX = novaDir.x;
+            ghost.dirY = novaDir.y;
+          }
+        }
+
+        ghost.x += ghost.dirX * ghost.speed;
+        ghost.y += ghost.dirY * ghost.speed;
+
+        // Checar Colisão com o Jogador
+        const dist = Math.hypot((player.x + TILE_SIZE/2) - (ghost.x + TILE_SIZE/2), (player.y + TILE_SIZE/2) - (ghost.y + TILE_SIZE/2));
+        if (dist < TILE_SIZE * 0.7) {
+          lives--;
+          atualizarHUD();
+          if (lives <= 0) {
+            finalizarJogo(false);
+          } else {
+            resetarPosicoes();
+          }
+        }
+      });
+    }
+
+    function atualizarHUD() {
+      document.getElementById('score').innerText = score;
+      document.getElementById('lives').innerText = lives;
+    }
+
+    function finalizarJogo(vitoria) {
+      cancelAnimationFrame(gameLoopId);
+      const overlay = document.getElementById('overlay');
+      const statusText = document.getElementById('statusText');
+
+      statusText.innerText = vitoria ? 'VOCÊ VENCEU! 🎉' : 'GAME OVER 💀';
+      statusText.style.color = vitoria ? '#4CAF50' : '#f44336';
+      overlay.style.display = 'flex';
+    }
+
+    // 6. RENDERIZAÇÃO GRÁFICA
+    function desenhar() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Desenhar Labirinto
+      for (let r = 0; r < currentMap.length; r++) {
+        for (let c = 0; c < currentMap[r].length; c++) {
+          const tile = currentMap[r][c];
+          if (tile === 1) {
+            ctx.fillStyle = '#3b4cca'; // Cor da parede estilo Pokémon
+            ctx.fillRect(c * TILE_SIZE, r * TILE_SIZE, TILE_SIZE - 1, TILE_SIZE - 1);
+          } else if (tile === 2) {
+            // Desenhar Pokébola Pequena (Ponto)
+            ctx.fillStyle = '#ff5350';
+            ctx.beginPath();
+            ctx.arc(c * TILE_SIZE + TILE_SIZE / 2, r * TILE_SIZE + TILE_SIZE / 2, 3, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        }
+      }
+
+      // Desenhar Jogador (Pokémon Escolhido)
+      ctx.drawImage(playerImg, player.x, player.y, TILE_SIZE, TILE_SIZE);
+
+      // Desenhar Fantasmas
+      ghosts.forEach(ghost => {
+        if (ghostImg.complete) {
+          ctx.drawImage(ghostImg, ghost.x, ghost.y, TILE_SIZE, TILE_SIZE);
+        } else {
+          ctx.fillStyle = ghost.color;
+          ctx.fillRect(ghost.x, ghost.y, TILE_SIZE, TILE_SIZE);
+        }
+      });
+    }
+
+    // 7. LOOP PRINCIPAL DO JOGO
+    function gameLoop() {
+      moverJogador();
+      moverFantasmas();
+      desenhar();
+      gameLoopId = requestAnimationFrame(gameLoop);
+    }
+
+    // --- NOVO SISTEMA DE COLISÃO (VERIFICA OS 4 CANTOS) ---
+function podeMover(x, y) {
+  // Cantos da caixa do personagem (com margem de 1px para evitar travamentos)
+  const pontos = [
+    { x: x, y: y },                                    // Canto superior esquerdo
+    { x: x + TILE_SIZE - 1, y: y },                    // Canto superior direito
+    { x: x, y: y + TILE_SIZE - 1 },                    // Canto inferior esquerdo
+    { x: x + TILE_SIZE - 1, y: y + TILE_SIZE - 1 }     // Canto inferior direito
+  ];
+
+  // Retorna falso se qualquer um dos cantos encostar em uma parede (1)
+  return !pontos.some(p => {
+    const tileX = Math.floor(p.x / TILE_SIZE);
+    const tileY = Math.floor(p.y / TILE_SIZE);
+    return currentMap[tileY] && currentMap[tileY][tileX] === 1;
+  });
+}
+
+// --- MOVIMENTAÇÃO DO JOGADOR CORRIGIDA ---
+function moverJogador() {
+  // 1. Tenta mudar para a nova direção desejada (nextDir)
+  const proxX_Desejado = player.x + player.nextDirX * player.speed;
+  const proxY_Desejado = player.y + player.nextDirY * player.speed;
+
+  if (podeMover(proxX_Desejado, proxY_Desejado)) {
+    // Se fizer uma curva, alinha o eixo oposto ao grid para não enganchar
+    if (player.nextDirX !== 0 && player.dirY !== 0) {
+      player.y = Math.round(player.y / TILE_SIZE) * TILE_SIZE;
+    }
+    if (player.nextDirY !== 0 && player.dirX !== 0) {
+      player.x = Math.round(player.x / TILE_SIZE) * TILE_SIZE;
+    }
+    player.dirX = player.nextDirX;
+    player.dirY = player.nextDirY;
+  }
+
+  // 2. Avança na direção atual
+  const proxX = player.x + player.dirX * player.speed;
+  const proxY = player.y + player.dirY * player.speed;
+
+  if (podeMover(proxX, proxY)) {
+    player.x = proxX;
+    player.y = proxY;
+  } else {
+    // Alinha perfeitamente ao grid para garantir que nunca entre na parede
+    player.x = Math.round(player.x / TILE_SIZE) * TILE_SIZE;
+    player.y = Math.round(player.y / TILE_SIZE) * TILE_SIZE;
+  }
+
+  // Coleta de Pokébolas
+  const centerGridX = Math.floor((player.x + TILE_SIZE / 2) / TILE_SIZE);
+  const centerGridY = Math.floor((player.y + TILE_SIZE / 2) / TILE_SIZE);
+
+  if (currentMap[centerGridY] && currentMap[centerGridY][centerGridX] === 2) {
+    currentMap[centerGridY][centerGridX] = 0;
+    score += 10;
+    totalDots--;
+    atualizarHUD();
+
+    if (totalDots === 0) finalizarJogo(true);
+  }
+}
+
+// --- MOVIMENTAÇÃO DOS FANTASMAS CORRIGIDA ---
+function moverFantasmas() {
+  ghosts.forEach(ghost => {
+    // Quando estiver perfeitamente alinhado a uma célula, escolhe nova direção
+    if (ghost.x % TILE_SIZE === 0 && ghost.y % TILE_SIZE === 0) {
+      const direcoes = [
+        { x: 1, y: 0 }, { x: -1, y: 0 },
+        { x: 0, y: 1 }, { x: 0, y: -1 }
+      ];
+
+      const validas = direcoes.filter(d => podeMover(ghost.x + d.x * TILE_SIZE, ghost.y + d.y * TILE_SIZE));
+
+      if (validas.length > 0) {
+        const novaDir = validas[Math.floor(Math.random() * validas.length)];
+        ghost.dirX = novaDir.x;
+        ghost.dirY = novaDir.y;
+      }
+    }
+
+    const proxX = ghost.x + ghost.dirX * ghost.speed;
+    const proxY = ghost.y + ghost.dirY * ghost.speed;
+
+    if (podeMover(proxX, proxY)) {
+      ghost.x = proxX;
+      ghost.y = proxY;
+    } else {
+      ghost.x = Math.round(ghost.x / TILE_SIZE) * TILE_SIZE;
+      ghost.y = Math.round(ghost.y / TILE_SIZE) * TILE_SIZE;
+    }
+
+    // Colisão Fantasma vs Jogador
+    const dist = Math.hypot((player.x + TILE_SIZE/2) - (ghost.x + TILE_SIZE/2), (player.y + TILE_SIZE/2) - (ghost.y + TILE_SIZE/2));
+    if (dist < TILE_SIZE * 0.7) {
+      lives--;
+      atualizarHUD();
+      if (lives <= 0) {
+        finalizarJogo(false);
+      } else {
+        resetarPosicoes();
+      }
+    }
+  });
+}
+    // Inicializa os botões ao carregar a página
+    carregarPresets();
+  </script>
+</body>
+</html>

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pokédex - Busca e Habilidades</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f2f5;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .search-box {
+      width: 100%;
+      max-width: 900px;
+      margin-bottom: 15px;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 12px 15px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      outline: none;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .search-box input:focus {
+      border-color: #ff5350;
+    }
+
+    .pagination-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      max-width: 900px;
+      margin-bottom: 15px;
+    }
+
+    .btn-page {
+      background-color: #ff5350;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.2s;
+    }
+
+    .btn-page:hover:not(:disabled) {
+      background-color: #e0423f;
+    }
+
+    .btn-page:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+
+    .table-container {
+      width: 100%;
+      max-width: 900px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    thead {
+      background-color: #ff5350;
+      color: white;
+    }
+
+    th, td {
+      padding: 12px 15px;
+      border-bottom: 1px solid #eee;
+      vertical-align: middle;
+    }
+
+    tbody tr:hover {
+      background-color: #f9f9f9;
+    }
+
+    .pokemon-img {
+      width: 60px;
+      height: 60px;
+    }
+
+    .pokemon-name {
+      text-transform: capitalize;
+      font-weight: bold;
+    }
+
+    /* Estilização das tags de habilidades */
+    .ability-tag {
+      display: inline-block;
+      background-color: #e9ecef;
+      color: #495057;
+      padding: 4px 8px;
+      border-radius: 12px;
+      font-size: 13px;
+      margin: 2px;
+      text-transform: capitalize;
+    }
+
+    .loading {
+      margin: 15px 0;
+      font-weight: bold;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Catálogo Pokémon com Habilidades</h1>
+
+  <!-- Campo de Busca -->
+  <div class="search-box">
+    <input 
+      type="text" 
+      id="searchInput" 
+      oninput="filtrarEAtualizar()" 
+      placeholder="🔍 Digite o nome ou ID do Pokémon..."
+    >
+  </div>
+
+  <!-- Controles de Paginação -->
+  <div class="pagination-container">
+    <button id="btnPrev" class="btn-page" onclick="paginaAnterior()" disabled>← Anterior</button>
+    <span id="pageInfo">Página 1</span>
+    <button id="btnNext" class="btn-page" onclick="proximaPagina()">Próximo →</button>
+  </div>
+
+  <p id="loadingMessage" class="loading">Carregando lista de Pokémon...</p>
+
+  <!-- Tabela -->
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>#ID</th>
+          <th>Sprite</th>
+          <th>Nome</th>
+          <th>Habilidades (Até 3)</th>
+        </tr>
+      </thead>
+      <tbody id="pokemonBody">
+        <!-- Linhas injetadas via JS -->
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    let todosPokemons = [];      // Armazena a lista completa (~1300 pokémons)
+    let pokemonsFiltrados = [];  // Armazena os resultados após busca
+    let paginaAtual = 1;
+    const LIMIT = 20;             // Quantidade por página
+
+    // Inicialização: carrega a lista base
+    async function inicializar() {
+      try {
+        const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=1300');
+        const data = await response.json();
+
+        // Mapeia adicionando o ID extraído da própria URL
+        todosPokemons = data.results.map((pokemon) => {
+          const urlParts = pokemon.url.split('/');
+          const id = urlParts[urlParts.length - 2];
+          return { ...pokemon, id: parseInt(id) };
+        });
+
+        pokemonsFiltrados = todosPokemons;
+        renderizarTabela();
+      } catch (error) {
+        console.error('Erro ao inicializar:', error);
+        document.getElementById('loadingMessage').innerText = 'Erro ao carregar lista de Pokémon.';
+      }
+    }
+
+    // Função para filtrar quando o usuário digita no input
+    function filtrarEAtualizar() {
+      const termo = document.getElementById('searchInput').value.toLowerCase().trim();
+
+      pokemonsFiltrados = todosPokemons.filter(pokemon => 
+        pokemon.name.toLowerCase().includes(termo) || pokemon.id.toString() === termo
+      );
+
+      paginaAtual = 1; // Reseta para a primeira página ao buscar
+      renderizarTabela();
+    }
+
+    // Renderiza a página atual da tabela
+    async function renderizarTabela() {
+      const tbody = document.getElementById('pokemonBody');
+      const loadingMsg = document.getElementById('loadingMessage');
+
+      tbody.innerHTML = '';
+      loadingMsg.style.display = 'block';
+
+      // Calcula os itens da página atual
+      const inicio = (paginaAtual - 1) * LIMIT;
+      const fim = inicio + LIMIT;
+      const itensPagina = pokemonsFiltrados.slice(inicio, fim);
+
+      if (itensPagina.length === 0) {
+        loadingMsg.style.display = 'none';
+        tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;">Nenhum Pokémon encontrado.</td></tr>';
+        atualizarBotoesPagina();
+        return;
+      }
+
+      try {
+        // Busca os detalhes (habilidades e imagem) apenas para os Pokémon visíveis
+        const requisicoesDetalhes = itensPagina.map(p => 
+          fetch(`https://pokeapi.co/api/v2/pokemon/${p.id}`).then(res => res.json())
+        );
+
+        const detalhes = await Promise.all(requisicoesDetalhes);
+
+        // Gera as linhas da tabela
+        const rowsHtml = detalhes.map(pokemon => {
+          // Pega até 3 habilidades
+          const habilidades = pokemon.abilities
+            .slice(0, 3)
+            .map(item => `<span class="ability-tag">${item.ability.name}</span>`)
+            .join(' ');
+
+          const imagem = pokemon.sprites.front_default || 'https://via.placeholder.com/60?text=?';
+
+          return `
+            <tr>
+              <td>#${String(pokemon.id).padStart(3, '0')}</td>
+              <td><img class="pokemon-img" src="${imagem}" alt="${pokemon.name}"></td>
+              <td class="pokemon-name">${pokemon.name}</td>
+              <td>${habilidades || '<em>Sem habilidades</em>'}</td>
+            </tr>
+          `;
+        }).join('');
+
+        tbody.innerHTML = rowsHtml;
+      } catch (error) {
+        console.error('Erro ao buscar detalhes:', error);
+        tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; color:red;">Erro ao carregar detalhes.</td></tr>';
+      } finally {
+        loadingMsg.style.display = 'none';
+        atualizarBotoesPagina();
+      }
+    }
+
+    // Atualiza o estado dos botões de navegação
+    function atualizarBotoesPagina() {
+      const totalPaginas = Math.ceil(pokemonsFiltrados.length / LIMIT) || 1;
+      document.getElementById('pageInfo').innerText = `Página ${paginaAtual} de ${totalPaginas}`;
+      
+      document.getElementById('btnPrev').disabled = paginaAtual === 1;
+      document.getElementById('btnNext').disabled = paginaAtual >= totalPaginas;
+    }
+
+    function proximaPagina() {
+      const totalPaginas = Math.ceil(pokemonsFiltrados.length / LIMIT);
+      if (paginaAtual < totalPaginas) {
+        paginaAtual++;
+        renderizarTabela();
+      }
+    }
+
+    function paginaAnterior() {
+      if (paginaAtual > 1) {
+        paginaAtual--;
+        renderizarTabela();
+      }
+    }
+
+    // Inicia a aplicação
+    inicializar();
+  </script>
+
+</body>
+</html>
