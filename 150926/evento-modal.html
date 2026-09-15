@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS evento modal</title>
+</head>
+
+<style>
+       /* ===================================================
+           4. EVENTO :target (Ativado ao clicar em um link #ID)
+           =================================================== */
+        .btn-abrir {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #e67e22;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+
+        .modal {
+            display: none; /* Escondido por padrão */
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-conteudo {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        /* Quando a URL contiver '#meu-modal' (ex: ao clicar no link) */
+        #meu-modal:target {
+            display: flex;
+        }
+
+        .btn-fechar {
+            display: inline-block;
+            margin-top: 15px;
+            color: #e74c3c;
+            text-decoration: none;
+            font-weight: bold;
+        }
+</style>
+<body>
+     <div class="card">
+        <h2>4. Evento <code>:target</code> (Modal/Popup com Âncora)</h2>
+        <a href="#meu-modal" class="btn-abrir">Abrir Modal</a>
+
+        <!-- O Modal tem a ID 'meu-modal' -->
+        <div id="meu-modal" class="modal">
+            <div class="modal-conteudo">
+                <h3>Este é um Modal em CSS!</h3>
+                <p>Ele apareceu porque a URL mudou para 
+                    <code>#meu-modal</code>.</p>
+                <a href="#" class="btn-fechar">Fechar Modal</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

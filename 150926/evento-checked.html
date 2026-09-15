@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evento Checked</title>
+</head>
+
+<style>
+    /* Esconde o checkbox real */
+    .toggle-input {
+        display: none;
+    }
+
+    /* Estiliza a label para parecer um botão */
+    .btn-toggle {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #8e44ad;
+        color: white;
+        border-radius: 6px;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    .painel-oculto {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: all 0.4s ease;
+        background: #f3e8f9;
+        border-radius: 6px;
+    }
+
+    /* Quando o checkbox estiver MARCADO, 
+    altera o elemento irmão (.painel-oculto) */
+    .toggle-input:checked~.painel-oculto {
+        max-height: 150px;
+        opacity: 1;
+        margin-top: 15px;
+        padding: 15px;
+    }
+</style>
+
+<body>
+ <div class="card">
+        <h2>3. Evento <code>:checked</code> (Abrir/Fechar no Clique)</h2>
+        <!-- O checkbox guarda o estado (marcado/desmarcado) -->
+        <input type="checkbox" id="meu-toggle" class="toggle-input">
+        
+        <!-- A label simula o botão -->
+        <label for="meu-toggle" class="btn-toggle">Clique para Toggle</label>
+
+        <div class="painel-oculto">
+            <p>✨ Surpresa! Este conteúdo foi exibido 
+                **sem usar nenhuma linha de JavaScript**, 
+                apenas usando a pseudo-classe 
+                <code>:checked</code> do CSS.</p>
+        </div>
+    </div>
+</body>
+
+</html>

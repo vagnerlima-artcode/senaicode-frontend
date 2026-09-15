@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos</title>
+</head>
+<style>
+    .blue {
+        width: 100px;
+        height: 100px;
+        background: turquoise;
+        transition: width 1s;
+        transition-timing-function: cubic-bezier(1.1, 0.7, 1.0, 0.1);
+    }
+    .green {
+        width: 100px;
+        height: 100px;
+        background: greenyellow;
+        transition: width 3s;
+        transition-timing-function: cubic-bezier(0.895, 0.03, 0.685, 0.22)
+    }
+   
+
+    .blue:hover {
+        width: 600px;
+    }
+    .green:hover {
+        width: 600px;
+    }
+  
+</style>
+
+<body>
+
+    <h1>Evento CSS - Transition</h1>
+  
+    <div class="blue"></div>
+    <div class="green"></div>
+
+
+    <div class="card">
+        <h2>3. Evento <code>:checked</code> (Abrir/Fechar no Clique)</h2>
+        <!-- O checkbox guarda o estado (marcado/desmarcado) -->
+        <input type="checkbox" id="meu-toggle" class="toggle-input">
+        
+        <!-- A label simula o botão -->
+        <label for="meu-toggle" class="btn-toggle">Clique para Toggle</label>
+
+        <div class="painel-oculto">
+            <p>✨ Surpresa! Este conteúdo foi exibido **sem usar nenhuma linha de JavaScript**, apenas usando a pseudo-classe <code>:checked</code> do CSS.</p>
+        </div>
+    </div>
+</body>
+
+</html>
