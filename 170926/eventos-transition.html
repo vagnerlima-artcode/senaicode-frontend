@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos</title>
+</head>
+
+
+<style>
+    body {
+        background-color: brown;
+    }
+
+    img {
+        transition: width 1s;
+        transition-timing-function:
+            cubic-bezier(0.075, 0.82, 0.165, 1);
+    }
+
+    img:hover {
+        width: 30%;
+    }
+
+    .blue {
+        width: 100px;
+        height: 100px;
+        background: rgb(0, 99, 247);
+        /* Evento Transition */
+        transition: width 1s;
+        transition-timing-function:
+            cubic-bezier(.09, 1.04, .77, .05);
+    }
+
+    .green {
+        width: 100px;
+        height: 100px;
+        background: greenyellow;
+        transition: width 3s;
+        transition-timing-function:
+            cubic-bezier(1, .15, .89, .31);
+    }
+
+    .orangered {
+        width: 100px;
+        height: 100px;
+        background: orangered;
+        transition: width 5s;
+        transition-timing-function:
+            cubic-bezier(.09, .48, 0, 1.87);
+    }
+
+    .pink {
+        width: 100px;
+        height: 100px;
+        background: rgb(220, 12, 239);
+        transition: width 5s;
+        transition-timing-function:
+            cubic-bezier(3, 0, 1, 0);
+    }
+
+    .yellow {
+        width: 100px;
+        height: 100px;
+        background: yellow;
+        transition: width 5s;
+        transition-timing-function:
+            cubic-bezier(3, 0, 1, 0);
+    }
+
+    .purple {
+        width: 100px;
+        height: 100px;
+        background: rgb(123, 0, 255);
+        transition: width 5s;
+        transition-timing-function:
+            cubic-bezier(3, 0, 1, 0);
+    }
+
+    .blue:hover {
+        width: 100%;
+    }
+
+    .green:hover {
+        width: 80%;
+    }
+
+    .orangered:hover {
+        width: 60%;
+    }
+
+    .pink:hover {
+        width: 40%;
+    }
+
+    .yellow:hover {
+        width: 20%;
+    }
+
+    .purple:hover {
+        width: 10%;
+    }
+</style>
+
+<body>
+    <h1>Evento CSS - Transition</h1>
+    <!-- <img src="logo-magalu.png"> -->
+
+    <div class="blue"></div>
+    <div class="green"></div>
+    <div class="orangered"></div>
+    <div class="pink"></div>
+    <div class="yellow"></div>
+
+
+</body>
+
+</html>

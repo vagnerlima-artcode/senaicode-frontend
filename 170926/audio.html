@@ -1,0 +1,64 @@
+<!-- HTML Audio-->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Audio</title>
+</head>
+
+<style>
+   /* Estilização geral do elemento nativo */
+audio {
+  width: 100%;
+  max-width: 450px;
+  height: 45px;
+  border-radius: 30px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  accent-color: #007bff; 
+  /* Altera a cor da barra de progresso e volume */
+}
+
+/* Customização do painel interno (Chrome, Safari, Edge) */
+audio::-webkit-media-controls-panel {
+  background-color: #1a1a1a;
+}
+
+/* Cor do texto de tempo restante e decorrido */
+audio::-webkit-media-controls-current-time-display,
+audio::-webkit-media-controls-time-remaining-display {
+  color: #ffffff;
+}
+
+/* Alterar a cor do botão de Play nativo */
+audio::-webkit-media-controls-play-button {
+  background-color: #007bff;
+  border-radius: 50%;
+}
+</style>
+<body>
+
+   <!-- A tag audio tem atributos: 
+    
+   controls > exibir o controle 
+    
+    autoplay > tocar automaticamente  
+    *obs não recomendando iniciar com 
+    autoplay com o som habilitado, 
+    alguns navegadores pode barrar
+    
+    muted > iniciar mudo
+    -->
+
+   <audio controls autoplay muted>
+      <!-- fontes sonora, o html irá testar a compatibilidade do navegador
+       para tocar os formatos dos audios digitais ".mp3, .ogg, .wav" 
+       Caso o navegador não tenha compatibilidade exibi a mensagem-->
+      <source src="audio/som.mp3" type="audio/mpeg">
+      <source src="audio/som.ogg" type="audio/ogg">
+      <source src="audio/som.wav" type="audio/wav">
+      *Esse navegador não compativel
+   </audio>
+</body>
+
+</html>

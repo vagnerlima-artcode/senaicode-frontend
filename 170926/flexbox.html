@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Flex Box</title>
+
+    <style>
+        /* 1. Reset para incluir 
+        padding na largura total
+        e zerar margens */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            display: flex;
+            gap: 10px;
+            flex-direction: row;
+        }
+
+        .container div {
+            display: flex;
+            background-color: red;
+            padding: 20px;
+        }
+
+        .col-10 {
+            flex: 0 0 10%;
+        }
+
+        .col-30 {
+            flex: 0 0 30%;
+        }
+
+        .col-70 {
+            flex: 0 0 70%;
+        }
+
+        .col-100 {
+            flex: 0 0 100%;
+        }
+
+        #blocos {
+            justify-content: center;
+        }
+
+        #rodape {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            background-color: red;
+        }
+
+      
+    </style>
+</head>
+
+<body>
+    <main>
+        <header id="top" class="container">
+            <div class="col-100">
+              Topo Site
+            </div>
+        </header>
+        <hr>
+
+        <div id="banner" class="container">
+            <div class="col-100">
+                <img style="width: 100%; height: auto;" src="img/banner.png" alt="Banner">
+            </div>
+        </div>
+        <hr>
+        <div id="blocos" class="container">
+            <div class="col-30">Bloco</div>
+            <div class="col-30">Bloco</div>
+            <div class="col-30">Bloco</div>
+        </div>
+        <hr>
+    </main>
+    <div id="rodape" class="container">
+        <div class="col-100">Rodape</div>
+    </div>
+</body>
+
+</html>
