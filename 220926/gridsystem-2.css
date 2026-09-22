@@ -1,0 +1,58 @@
+/* 
+    GridSystem 2
+    Desenvolvedor:Vagner Lima
+    Data: 220926 
+*/
+
+.site-layout {
+    /* Ativa o contexto de Grid System no container pai.*/
+    display: grid;
+    /* Definindo 2 colunas 
+        (200px para o menu, o restante para o conteúdo) */
+    grid-template-columns: 200px 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    /* Definindo a altura das linhas 
+        (topo auto, meio ocupa o espaço restante, rodapé auto) */
+    grid-template-rows: auto 1fr auto;
+
+    /* Mapeando o layout visualmente */
+    grid-template-areas:
+        "header  header"
+        "sidebar content"
+        "footer  footer";
+
+    /*Altura da página*/
+    min-height: 100vh;
+
+    /* Espaçamento dos elementos */
+    gap: 8px;
+    font-family: sans-serif;
+}
+
+/* Conectando os elementos às áreas do Grid */
+.header {
+    grid-area: header;
+    background-color: #2563eb;
+    color: white;
+    padding: 20px;
+}
+
+.sidebar {
+    grid-area: sidebar;
+    background-color: #f1f5f9;
+    padding: 20px;
+}
+
+.content {
+    grid-area: content;
+    background-color: #ffffff;
+    padding: 20px;
+}
+
+.footer {
+    grid-area: footer;
+    background-color: #1e293b;
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
