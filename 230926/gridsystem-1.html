@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid System</title>
+</head>
+
+<style>
+    .grid-container {
+        display: grid;
+        /* Cria colunas flexíveis: cada coluna tem no mínimo 200px
+        e expande até 1fr */
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 10px;
+        /* Espaçamento entre as linhas e colunas */
+        padding: 10px;
+    }
+
+    .card {
+        background-color: #e2e8f0;
+        border: 1px solid #cbd5e1;
+        border-radius: 8px;
+        padding: 40px 20px;
+        text-align: center;
+        font-family: sans-serif;
+        font-weight: bold;
+    }
+</style>
+
+<body>
+    <div class="grid-container">
+        <div class="card">Item 1</div>
+        <div class="card">Item 2</div>
+        <div class="card">Item 3</div>
+        <div class="card">Item 4</div>
+        <div class="card">Item 5</div>
+        <div class="card">Item 6</div>
+    </div>
+</body>
+
+</html>

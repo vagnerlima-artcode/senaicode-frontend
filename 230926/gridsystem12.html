@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GridSystem 12</title>
+</head>
+<style>
+    /* Conteiner Principal */
+.grid-12-colunas {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr); /* Divide a tela em 12 frações iguais */
+  gap: 8px;
+}
+
+/* Classes utilitárias de ocupação de colunas */
+.col-1  { grid-column: span 1; }
+.col-2  { grid-column: span 2; }
+.col-3  { grid-column: span 3; }
+.col-4  { grid-column: span 4; }
+.col-5  { grid-column: span 5; }
+.col-6  { grid-column: span 6; }
+.col-7  { grid-column: span 7; }
+.col-8  { grid-column: span 8; }
+.col-9  { grid-column: span 9; }
+.col-10 { grid-column: span 10; }
+.col-11 { grid-column: span 11; }
+.col-12 { grid-column: span 12; }
+
+/* Quebra para 1 única coluna em telas menores que 768px */
+@media (max-width: 768px) {
+  .grid-12-colunas > [class*="col-"] {
+    grid-column: span 12;
+  }
+}
+
+/* Estilo visual apenas para demonstração */
+.grid-12-colunas > div {
+  background-color: #e2e8f0;
+  border: 1px solid #cbd5e1;
+  padding: 16px;
+  text-align: center;
+  border-radius: 6px;
+}
+</style>
+<body>
+<div class="grid-12-colunas">
+  <!-- Exemplo 1: Duas colunas iguais (6 + 6) -->
+  <div class="col-6">Metade (6)</div>
+  <div class="col-6">Metade (6)</div>
+
+  <!-- Exemplo 2: Layout com Sidebar e Conteúdo (8 + 4) -->
+  <div class="col-8">Conteúdo Principal (8)</div>
+  <div class="col-4">Sidebar (4)</div>
+
+  <!-- Exemplo 3: Três colunas iguais (4 + 4 + 4) -->
+  <div class="col-4">Terço (4)</div>
+  <div class="col-4">Terço (4)</div>
+  <div class="col-4">Terço (4)</div>
+
+  <!-- Exemplo 4: Largura Total (12) -->
+  <div class="col-12">Largura Total (12)</div>
+</div>
+</body>
+</html>

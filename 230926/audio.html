@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio</title>
+</head>
+<body>
+    <!-- 
+        controls > habilita o controle do audio
+        muted > inicia o player mudo *Por ética não devemos carregar os sites com o audio habilitado
+        autoplay > ao carregar o site já executa o audio
+    -->
+    <audio controls muted autoplay>
+        <!-- Podemos definir vários formatos para que o navegador
+         possa usar uma das opções compativeis, caso o navegador
+         não suporte um texto pode ser exibido -->
+        <source src="audio/som.mp3">
+        <source src="audio/som.ogg">
+        *Navegador nao suporta
+    </audio>
+</body>
+</html>
