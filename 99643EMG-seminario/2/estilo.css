@@ -1,0 +1,193 @@
+/* ==========================================================
+   1. RESET E VARIÁVEIS GLOBAIS
+   ========================================================== */
+:root {
+  --primary-color: #2563eb;
+  --primary-hover: #1d4ed8;
+  --bg-color: #f8fafc;
+  --card-bg: #ffffff;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --border-color: #e2e8f0;
+  --radius: 8px;
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  line-height: 1.6;
+  color: var(--text-main);
+  background-color: var(--bg-color);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================================
+   2. ACESSIBILIDADE (Skip Link Corrigido)
+   ========================================================== */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  background-color: var(--primary-color);
+  color: #ffffff;
+  padding: 0.75rem 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 0 0 var(--radius) 0;
+  z-index: 9999;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: 3px solid #ffffff;
+}
+
+#conteudo-principal:focus {
+  outline: none;
+}
+
+/* ==========================================================
+   3. CABEÇALHO E NAVEGAÇÃO
+   ========================================================== */
+header[role="banner"] {
+  background-color: var(--card-bg);
+  border-bottom: 1px solid var(--border-color);
+  padding: 1.5rem 2rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+header h1 {
+  font-size: 1.8rem;
+  color: var(--primary-color);
+  margin-bottom: 0.75rem;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--text-main);
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+nav a:hover, nav a:focus {
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+
+/* ==========================================================
+   4. LAYOUT PRINCIPAL (Centralizado)
+   ========================================================== */
+#conteudo-principal {
+  flex: 1;
+  max-width: 800px;
+  width: 100%;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}
+
+/* ==========================================================
+   5. ARTIGO PRINCIPAL
+   ========================================================== */
+article {
+  background-color: var(--card-bg);
+  padding: 2rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border-color);
+}
+
+article header {
+  padding: 0;
+  border: none;
+  box-shadow: none;
+  margin-bottom: 1.5rem;
+}
+
+article h2 {
+  font-size: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+
+article p {
+  margin-bottom: 1.25rem;
+}
+
+.author {
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+time {
+  color: var(--text-muted);
+}
+
+section {
+  margin: 1.5rem 0;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+}
+
+section h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Estilo do bloco Sobre o Autor dentro do artigo */
+article aside {
+  background-color: #f1f5f9;
+  padding: 1.25rem;
+  border-radius: var(--radius);
+  border-left: 4px solid var(--primary-color);
+  margin: 2rem 0;
+}
+
+article aside h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: var(--primary-color);
+}
+
+article footer {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+article footer a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+article footer a:hover {
+  text-decoration: underline;
+}
+
+/* ==========================================================
+   6. RODAPÉ GLOBAL
+   ========================================================== */
+footer[role="contentinfo"] {
+  background-color: var(--card-bg);
+  border-top: 1px solid var(--border-color);
+  text-align: center;
+  padding: 1.5rem;
+  color: var(--text-muted);
+  margin-top: 2rem;
+}

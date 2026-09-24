@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Players de Mídia Customizados</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <h1>🎬 Players de Mídia Customizados</h1>
+
+    <p class="descricao">
+        Projeto de player de vídeo e áudio usando HTML, CSS e JavaScript.
+    </p>
+
+
+    <!-- PLAYER DE VÍDEO -->
+
+    <div class="player">
+
+        <h2>🎥 Vídeo</h2>
+
+        <!-- Vídeo usado no projeto -->
+        <video id="video" src="Natureza.mp4"></video>
+
+        <!-- Barra de progresso -->
+        <input type="range" id="progresso" value="0" min="0" max="100">
+
+        <div class="controles">
+
+            <!-- Controles criados pelo grupo -->
+            <button id="play">▶️</button>
+
+            <button id="voltar">⏪ 10s</button>
+
+            <button id="avancar">10s ⏩</button>
+
+            <button id="mute">🔊</button>
+
+            <!-- Volume -->
+            <input
+                type="range"
+                id="volume"
+                min="0"
+                max="1"
+                step="0.1"
+                value="1"
+            >
+
+            <!-- Velocidade do vídeo -->
+            <select id="velocidade">
+                <option value="0.5">0.5x</option>
+                <option value="1" selected>1x</option>
+                <option value="1.5">1.5x</option>
+                <option value="2">2x</option>
+            </select>
+
+            <button id="fullscreen">⛶</button>
+
+        </div>
+
+    </div>
+
+
+    <!-- PLAYER DE ÁUDIO -->
+
+    <div class="player">
+
+        <h2>🎧 Áudio</h2>
+
+        <audio id="audio" src="musica.mp3"></audio>
+
+        <div class="controles">
+
+            <button id="playAudio">▶️</button>
+
+            <button id="muteAudio">🔊</button>
+
+            <input
+                type="range"
+                id="volumeAudio"
+                min="0"
+                max="1"
+                step="0.1"
+                value="1"
+            >
+
+        </div>
+
+    </div>
+
+
+    <!-- Arquivo JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>

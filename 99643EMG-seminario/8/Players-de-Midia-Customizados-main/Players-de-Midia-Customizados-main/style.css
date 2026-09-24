@@ -1,0 +1,110 @@
+/* Configurações gerais */
+
+body {
+    background-color: #111;
+    font-family: Arial, sans-serif;
+    color: white;
+    margin: 0;
+    padding: 30px;
+}
+
+
+/* Título */
+
+h1 {
+    text-align: center;
+    font-size: 32px;
+}
+
+.descricao {
+    text-align: center;
+    color: #aaa;
+    margin-bottom: 40px;
+}
+
+
+/* Área dos players */
+
+.player {
+    background-color: #1b1b1b;
+    padding: 25px;
+    margin: 30px auto;
+    max-width: 650px;
+    border-radius: 20px;
+    border: 2px solid #333;
+    box-shadow: 0 0 20px rgba(138, 43, 226, 0.25);
+}
+
+
+/* Títulos dos players */
+
+.player h2 {
+    text-align: center;
+    color: #ba68ff;
+}
+
+
+/* Vídeo */
+
+video {
+    width: 100%;
+    max-width: 600px;
+    display: block;
+    margin: auto;
+
+    border: 4px solid blueviolet;
+    border-radius: 20px;
+}
+
+
+/* Barra de progresso */
+
+#progresso {
+    width: 100%;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+
+/* Controles */
+
+.controles {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+}
+
+
+/* Botões */
+
+button {
+    background-color: blueviolet;
+    color: white;
+    border: none;
+    padding: 10px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #9c4dcc;
+}
+
+
+/* Volume */
+
+#volume,
+#volumeAudio {
+    width: 100px;
+}
+
+
+/* Velocidade */
+
+#velocidade {
+    padding: 8px;
+    border-radius: 8px;
+}

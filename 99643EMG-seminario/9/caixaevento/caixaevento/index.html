@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>caixa de eventos</title>
+
+    <link rel="stylesheet" href="style.css">
+  
+</head>
+
+<body>
+    
+    <div class="glow"></div>
+    
+    <main>
+        
+        <div class="container3">
+
+        <section class="event-box">
+            
+            <div class="container1">
+
+            <div class="status">
+                <span>último evento:</span>
+                <strong id="ultimoEvento">nenhum</strong>
+            </div>
+
+            <div class="display">
+                <p id="evento">aguardando evento</p>
+            </div>
+
+            <div class="controles">
+
+                <button id="botao">
+                    botão
+                </button>
+
+                <input id="campo" type="text"
+                    placeholder="digite algo">
+            </div>
+                
+            </div>
+
+                <div id="area" tabindex="0">
+                    área de eventos
+                </div>
+            
+            <div class="container2">
+
+            <div class="teclado">
+                <p>tecla pressionada:</p>
+                <strong id="tecla">nenhuma</strong>
+            </div>
+
+            <div class="mouse">
+                <p>mouse:</p>
+
+                <span>X: <strong id="mouseX">0</strong></span>
+                <span>Y: <strong id="mouseY">0</strong></span>
+            </div>
+
+            <div class="log">
+                <h4>event log</h4>
+
+                <div id="logs"></div>
+            </div>
+                
+            </div>
+            
+        </div>
+
+        </section>
+
+    </main>
+      <script src="script.js"></script>
+</body>
+</html>

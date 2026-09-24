@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Responsividade Web</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- CABEÇALHO -->
+
+    <header>
+
+        <h1>Responsividade Web</h1>
+
+        <p>HTML + CSS</p>
+
+    </header>
+
+
+    <!-- MENU -->
+
+    <nav>
+
+        <a href="#inicio">Início</a>
+
+        <a href="#conceito">Conceito</a>
+
+        <a href="#importancia">Importância</a>
+
+        <a href="#tecnicas">Técnicas</a>
+
+        <a href="#codigo">Código</a>
+
+        <a href="#conclusao">Conclusão</a>
+
+    </nav>
+
+
+    <main>
+
+
+        <!-- INÍCIO -->
+
+        <section id="inicio" class="inicio">
+
+            <h2>O que é Responsividade?</h2>
+
+            <p>
+
+                Responsividade é fazer com que um site
+                consiga se adaptar a diferentes tamanhos
+                de tela.
+
+            </p>
+
+            <p>
+
+                Um site responsivo funciona bem em
+                computadores, tablets e celulares.
+
+            </p>
+
+            <div class="caixa-destaque">
+
+                <h3>Exemplo</h3>
+
+                <p>
+
+                    Em um computador, podemos ter vários
+                    elementos lado a lado.
+
+                    No celular, eles podem ficar um
+                    embaixo do outro.
+
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- CONCEITO -->
+
+        <section id="conceito">
+
+            <h2>Conceito</h2>
+
+            <p>
+
+                A responsividade permite que o conteúdo
+                de uma página se organize de acordo com
+                o espaço disponível.
+
+            </p>
+
+
+            <div class="cards">
+
+
+                <div class="card">
+
+                    <h3>Computador</h3>
+
+                    <p>
+
+                        A tela é maior e podemos colocar
+                        mais elementos lado a lado.
+
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <h3>Tablet</h3>
+
+                    <p>
+
+                        O espaço é menor, então alguns
+                        elementos precisam se ajustar.
+
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <h3>Celular</h3>
+
+                    <p>
+
+                        A tela é pequena e os elementos
+                        geralmente ficam um abaixo do outro.
+
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- IMPORTÂNCIA -->
+
+        <section id="importancia">
+
+            <h2>Por que é importante?</h2>
+
+            <p>
+
+                Atualmente, as pessoas acessam sites
+                usando vários tipos de dispositivos.
+
+            </p>
+
+
+            <div class="cards">
+
+
+                <div class="card">
+
+                    <h3>📱 Celulares</h3>
+
+                    <p>
+
+                        O site precisa funcionar em telas
+                        pequenas.
+
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <h3>💻 Computadores</h3>
+
+                    <p>
+
+                        O espaço maior permite organizar
+                        mais informações.
+
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <h3>🖥️ Monitores</h3>
+
+                    <p>
+
+                        O conteúdo pode ocupar melhor
+                        o espaço disponível.
+
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- TÉCNICAS -->
+
+        <section id="tecnicas">
+
+            <h2>Principais técnicas</h2>
+
+            <p>
+
+                Existem algumas ferramentas do CSS
+                que ajudam a criar sites responsivos.
+
+            </p>
+
+
+            <div class="cards">
+
+
+                <div class="card">
+
+                    <h3>Flexbox</h3>
+
+                    <p>
+
+                        Ajuda a organizar elementos
+                        em uma linha ou coluna.
+
+                    </p>
+
+                    <pre>
+display: flex;
+                    </pre>
+
+                </div>
+
+
+                <div class="card">
+
+                    <h3>Media Query</h3>
+
+                    <p>
+
+                        Permite mudar o estilo da página
+                        dependendo do tamanho da tela.
+
+                    </p>
+
+                    <pre>
+@media (max-width: 600px) {
+}
+                    </pre>
+
+                </div>
+
+
+                <div class="card">
+
+                    <h3>Porcentagem</h3>
+
+                    <p>
+
+                        Permite usar tamanhos que se
+                        adaptam ao espaço disponível.
+
+                    </p>
+
+                    <pre>
+width: 90%;
+                    </pre>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- VIEWPORT -->
+
+        <section>
+
+            <h2>Viewport</h2>
+
+            <p>
+
+                O viewport é a área que conseguimos
+                visualizar na tela.
+
+            </p>
+
+            <p>
+
+                Para fazer o site funcionar corretamente
+                em celulares, usamos uma configuração
+                importante no HTML:
+
+            </p>
+
+
+            <pre class="codigo">
+
+&lt;meta name="viewport"
+content="width=device-width, initial-scale=1.0"&gt;
+
+            </pre>
+
+
+            <div class="caixa-destaque">
+
+                <h3>O que isso faz?</h3>
+
+                <p>
+
+                    Faz a página utilizar a largura real
+                    do dispositivo.
+
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- FLEXBOX -->
+
+        <section>
+
+            <h2>Flexbox</h2>
+
+            <p>
+
+                O Flexbox é usado para organizar
+                elementos de forma mais fácil.
+
+            </p>
+
+
+            <pre class="codigo">
+
+.container {
+    display: flex;
+}
+
+            </pre>
+
+
+            <p>
+
+                Com isso, os elementos dentro da
+                classe podem ficar organizados
+                lado a lado.
+
+            </p>
+
+        </section>
+
+
+
+        <!-- MEDIA QUERY -->
+
+        <section>
+
+            <h2>Media Query</h2>
+
+            <p>
+
+                A Media Query permite criar uma regra
+                específica para telas menores.
+
+            </p>
+
+
+            <pre class="codigo">
+
+@media (max-width: 600px) {
+
+    .cards {
+        flex-direction: column;
+    }
+
+}
+
+            </pre>
+
+
+            <p>
+
+                Nesse exemplo, quando a tela tiver
+                até 600 pixels, os cards ficam
+                um abaixo do outro.
+
+            </p>
+
+        </section>
+
+
+
+        <!-- CÓDIGO -->
+
+        <section id="codigo">
+
+            <h2>Como nosso código funciona?</h2>
+
+            <p>
+
+                Nosso projeto utiliza HTML para criar
+                a estrutura e CSS para deixar a página
+                bonita e responsiva.
+
+            </p>
+
+
+            <div class="explicacao">
+
+                <h3>HTML</h3>
+
+                <p>
+
+                    O HTML cria títulos, textos, menus,
+                    caixas e outras partes da página.
+
+                </p>
+
+            </div>
+
+
+            <div class="explicacao">
+
+                <h3>CSS</h3>
+
+                <p>
+
+                    O CSS define cores, tamanhos,
+                    espaçamentos e organização.
+
+                </p>
+
+            </div>
+
+
+            <div class="explicacao">
+
+                <h3>Media Query</h3>
+
+                <p>
+
+                    A Media Query muda algumas regras
+                    quando a tela fica menor.
+
+                </p>
+
+            </div>
+
+
+            <h3 class="titulo-codigo">
+
+                Exemplo do nosso CSS
+
+            </h3>
+
+
+            <pre class="codigo">
+
+.card {
+    background: #18202b;
+    padding: 20px;
+    margin: 10px;
+}
+
+            </pre>
+
+
+            <p>
+
+                Nesse exemplo, criamos uma classe chamada
+                <strong>card</strong>.
+
+            </p>
+
+
+            <p>
+
+                O <strong>background</strong> muda a cor,
+                o <strong>padding</strong> cria espaço
+                interno e o <strong>margin</strong>
+                cria espaço externo.
+
+            </p>
+
+        </section>
+
+
+
+        <!-- CONCLUSÃO -->
+
+        <section id="conclusao" class="final">
+
+            <h2>Conclusão</h2>
+
+            <p>
+
+                A responsividade é uma parte importante
+                do desenvolvimento de sites.
+
+            </p>
+
+            <p>
+
+                Ela permite que uma página se adapte
+                a diferentes tamanhos de tela.
+
+            </p>
+
+
+            <div class="caixa-destaque">
+
+                <h3>O que aprendemos?</h3>
+
+                <p>
+
+                    • O que é responsividade
+
+                </p>
+
+                <p>
+
+                    • A importância do viewport
+
+                </p>
+
+                <p>
+
+                    • Como o Flexbox ajuda na organização
+
+                </p>
+
+                <p>
+
+                    • Como funciona uma Media Query
+
+                </p>
+
+                <p>
+
+                    • Como HTML e CSS trabalham juntos
+
+                </p>
+
+            </div>
+
+
+            <h3 class="obrigado">
+
+                Obrigado pela atenção!
+
+            </h3>
+
+        </section>
+
+
+    </main>
+
+
+    <footer>
+
+        <p>Seminário de Responsividade Web</p>
+
+        <p>HTML + CSS</p>
+
+    </footer>
+
+
+</body>
+
+</html>

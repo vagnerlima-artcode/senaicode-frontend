@@ -1,0 +1,291 @@
+/* =========================
+   RESET
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f5f5;
+    color: #222;
+}
+
+
+/* =========================
+   CABEÇALHO
+========================= */
+
+header {
+    background: #111827;
+    color: white;
+    padding: 20px 40px;
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+header h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 30px;
+}
+
+
+/* =========================
+   MENU PRINCIPAL
+========================= */
+
+nav {
+    max-width: 1100px;
+    margin: auto;
+}
+
+nav > ul {
+    list-style: none;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+}
+
+
+/* =========================
+   LINKS
+========================= */
+
+nav a {
+    display: block;
+
+    color: white;
+    text-decoration: none;
+
+    padding: 12px 18px;
+
+    border-radius: 6px;
+
+    transition: 0.3s;
+}
+
+nav a:hover {
+    background: #2563eb;
+}
+
+
+/* =========================
+   CATEGORIAS
+========================= */
+
+nav details {
+    position: relative;
+}
+
+nav summary {
+    list-style: none;
+
+    cursor: pointer;
+
+    padding: 12px 18px;
+
+    border-radius: 6px;
+
+    color: white;
+
+    transition: 0.3s;
+}
+
+nav summary:hover {
+    background: #2563eb;
+}
+
+
+/* Remove a seta padrão em alguns navegadores */
+
+nav summary::-webkit-details-marker {
+    display: none;
+}
+
+
+/* Cria uma seta */
+
+nav summary::after {
+    content: " ▼";
+
+    font-size: 10px;
+}
+
+
+/* =========================
+   SUBCATEGORIAS
+========================= */
+
+nav details ul {
+    position: absolute;
+
+    top: 100%;
+    left: 0;
+
+    min-width: 200px;
+
+    list-style: none;
+
+    background: #1f2937;
+
+    border-radius: 6px;
+
+    padding: 8px;
+
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+}
+
+
+/* Links das subcategorias */
+
+nav details ul a {
+    padding: 12px 15px;
+
+    color: white;
+}
+
+nav details ul a:hover {
+    background: #2563eb;
+}
+
+
+/* =========================
+   CONTEÚDO
+========================= */
+
+main {
+    width: 100%;
+}
+
+section {
+    min-height: 80vh;
+
+    padding: 100px 30px;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    border-bottom: 1px solid #ddd;
+}
+
+section:nth-child(even) {
+    background: white;
+}
+
+section:nth-child(odd) {
+    background: #eef2ff;
+}
+
+section h2 {
+    margin-bottom: 20px;
+
+    color: #1e3a8a;
+
+    font-size: 36px;
+}
+
+section p {
+    max-width: 600px;
+
+    color: #555;
+
+    font-size: 18px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================
+   RODAPÉ
+========================= */
+
+footer {
+    background: #111827;
+
+    color: white;
+
+    text-align: center;
+
+    padding: 25px;
+}
+
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media (max-width: 768px) {
+
+    header {
+        padding: 15px;
+    }
+
+    header h1 {
+        font-size: 24px;
+    }
+
+    nav > ul {
+        flex-direction: column;
+
+        align-items: stretch;
+
+        width: 100%;
+    }
+
+    nav > ul > li {
+        width: 100%;
+
+        text-align: center;
+    }
+
+    nav a,
+    nav summary {
+        width: 100%;
+    }
+
+    nav details ul {
+        position: static;
+
+        width: 100%;
+
+        margin-top: 5px;
+
+        background: #374151;
+
+        box-shadow: none;
+    }
+
+    section {
+        min-height: 70vh;
+
+        padding: 80px 20px;
+    }
+
+    section h2 {
+        font-size: 28px;
+    }
+
+    section p {
+        font-size: 16px;
+    }
+}

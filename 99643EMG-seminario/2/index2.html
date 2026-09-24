@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Artigos e novidades sobre HTML semântico, acessibilidade e desenvolvimento web.">
+  <title>Meu Blog de Tecnologia - Entendendo o HTML Semântico</title>
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+  <!-- Link de atalho corrigido para acessibilidade -->
+  <a href="#conteudo-principal" class="skip-link">Pular para o conteúdo principal</a>
+
+  <!-- Cabeçalho principal da página -->
+  <header role="banner">
+    <h1>Meu Blog de Tecnologia</h1>
+    
+    <nav aria-label="Navegação Principal">
+      <ul>
+        <li><a href="#inicio">Início</a></li>
+        <li><a href="#artigos">Artigos</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Conteúdo principal com tabindex para foco de teclado -->
+  <main id="conteudo-principal" tabindex="-1">
+
+    <!-- Artigo principal -->
+    <article id="artigos">
+      <header>
+        <h2>Entendendo o HTML Semântico</h2>
+        <p>Publicado por <span class="author">Autor do Blog</span> em <time datetime="2026-09-23">23 de setembro de 2026</time></p>
+      </header>
+
+      <p>Tags semânticas ajudam a organizar o conteúdo e melhoram o SEO...</p>
+      
+      <section aria-labelledby="por-que-usar">
+        <h3 id="por-que-usar">Por que usar?</h3>
+        <p>Garante acessibilidade e clareza estrutural.</p>
+      </section>
+
+      <!-- Bloco "Sobre o Autor" inserido dentro do cartão do artigo -->
+      <aside aria-label="Informações sobre o Autor">
+        <h3>Sobre o Autor</h3>
+        <p>Desenvolvedor apaixonado por boas práticas de código.</p>
+      </aside>
+
+      <footer>
+        <p>Categorias: <a href="#html">HTML</a>, <a href="#web">Desenvolvimento Web</a></p>
+      </footer>
+    </article>
+
+  </main>
+
+  <!-- Rodapé global da página -->
+  <footer role="contentinfo">
+    <p>&copy; <time datetime="2026">2026</time> Meu Blog - Todos os direitos reservados.</p>
+  </footer>
+
+</body>
+</html>

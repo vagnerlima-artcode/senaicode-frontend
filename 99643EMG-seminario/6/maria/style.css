@@ -1,0 +1,53 @@
+body {
+            background: #ffc0e5;
+            color: white;
+            font-family: Arial;
+            text-align: center;
+            padding-top: 100px;
+        }
+
+        .card {
+            width: 250px;
+            margin: auto;
+            padding: 30px;
+            background: #e75c8a;
+            border-radius: 20px;
+
+            /* Transição suave */
+            transition: 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+
+            /* Animação */
+            animation: aparecer 4s;
+        }
+
+        /* Efeito quando passa o mouse */
+        .card:hover {
+            transform: scale(1.1) translateY(-10px);
+            background: #fab8e3;
+        }
+
+        /* Define a animação */
+        @keyframes aparecer {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+        }
