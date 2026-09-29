@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Gerenciador de Tarefas</title>
+  <link rel="stylesheet" href="style.css">
+  <title>Test FrontEnd com Cypress</title>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Gerenciador de Tarefas</h1>
+
+    <form id="todo-form">
+      <input type="text" id="todo-input" placeholder="Digite uma nova tarefa..." required>
+      <button type="submit" id="add-btn">Adicionar</button>
+    </form>
+    <hr>
+    <div class="filters">
+      <button id="filter-all" class="active">Todas</button>
+      <button id="filter-pending">Pendentes</button>
+      <button id="filter-completed">Concluídas</button>
+    </div>
+
+    <p id="empty-message">Nenhuma tarefa cadastrada.</p>
+    <ul id="todo-list"></ul>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
