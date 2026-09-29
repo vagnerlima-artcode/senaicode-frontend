@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Sistema OS - Indústria 4.0 SENAI </title>
+    </head>
+
+    <body>
+        <header id="cabecalho">
+            <h1> SENAI - Controle de manuntenção industrial </h1>
+        </header>
+        <!-- <nav aria-label="navegação principal">
+            <ul class = "nav">
+                <li> <a href="#dashboard"> Dashboard de OS</a></li>
+                <li> <a href="#nova-os"> Abrir Nova OS</a></li>
+                <li> <a href="#instrucoes"> Procedimentos</a></li>
+            </ul>
+        </nav> -->
+
+        
+
+                <div class="other">
+                    <details class="principal">
+                        <summary class="menu"> Menu </summary>
+                      
+                        <ul class="list">
+
+                            <li class="list-item"><a href="teste.html"> Botões</a></li>
+                            <li class="list-item"><a href="listas.html"> Listas </a></li>
+                            <li class="list-item"><a href="places.html"> Places</a></li>
+
+
+
+                        </ul>
+                    </details>
+
+            </div>
+
+            <main>
+                <section id="Dashboard">
+                    <h2> Ordem de serviços em aberto</h2>
+
+                    <table class="tabela">
+                        <caption> Lista de manuntenções preventivas e corretivas da fábrica </caption>
+
+
+                        <thead>
+                            <tr>
+                                <th scope="col"> ID</th>
+                                <th scope="col"> Equipamento</th>
+                                <th scope="col"> Setor</th>
+                                <th scope="col"> Data Abertura</th>
+                                <th scope="col"> Status</th>
+
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td> #1042</td>
+                                <td> Torno CNC R-200</td>
+                                <td> Usinagem</td>
+                                <td> <time datetime="2026-09-02"> 02/09/2026</time></td>
+                                <td> Em Andamento</td>
+                            </tr>
+                            <tr>
+                                <td> #1043 </td>
+                                <td> Prensa hidráulica 50T</td>
+                                <td> Stamping </td>
+                                <td> <time datetime="2026-09-03"> 03/09/2026</time></td>
+                                <td> Aguardando peça</td>
+
+                            </tr>
+
+                        </tbody>
+
+                        <tfoot>
+                            <tr>
+                                <td colspan="4"> Total de OS ativas </td>
+                                <td> <strong> 2 </strong></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+
+
+                </section>
+
+
+                <section id="Nova-os">
+
+
+
+
+                    <h2 class="form-title"> Abertura de Nova Ordem de Serviço </h2>
+
+                    <form action="#" method="POST" enctype="multipart/form-data" class="formulario">
+
+                        <div class="form-group">
+
+                            <fieldset>
+                                <legend>Indentificação do Solicitante</legend>
+                                <label for="matricula"> Matrícula SENAI/Mecânico: </label> <br>
+                                <input type="text" id="matricula" name="matricula" required
+                                    pattern=" [A-Z] {2} [0-9] {4}" placeholder="EX: SN1234"> <br> <br>
+                                <label for="email"> Email Corporativo: </label> <br>
+                                <input type="email" id="email" name="email" required placeholder="tecnico@senai.br">
+                                <br>
+                                <br>
+                            </fieldset>
+
+                        </div>
+
+
+
+
+
+
+
+
+                        <div class="form-group-2">
+                            <fieldset>
+                                <legend> Dados da Ocorrência </legend>
+
+                                <label for="equipamento"> Equipamento afetado: </label>
+                                <input type="text" id="equipamento" name="equipamento" list="lista-equipamentos"
+                                    required>
+                                <datalist id="lista-equipamentos">
+
+                                    <option value="Torno CNC R200"></option>
+                                    <option value="Prensa Hidráulica 50T"></option>
+                                    <option value="Robô Soldador ABB"></option>
+                                    <option value=" Esteira Transportadora T-100"></option>
+
+
+                                </datalist> <br> <br>
+
+                                <label for="foto-laudo"> Anexar foto/Laudo Técnico (PDF ou Imagem): </label> <br>
+                                <!--BOTÃO 1-->
+                                <input type="file" id="foto-laudo" name="foto-laudo" accept="image/*,.pdf"> <br> <br>
+
+                                <label for="descricao"> Descrição Detalhada do Defeito: </label> <br>
+                                <textarea id="descricao" name="descricao" rows="5" cols="40" required minlength="20"
+                                    placeholder="Descreva o problema com no mínimo 20 caracteres..."></textarea> <br>
+                                <br>
+                            </fieldset>
+
+                        </div>
+
+                        <button type="submit"> Registrar Ordem de Serviço</button>
+                        <button type="reset"> Limpar Formulário</button>
+                    </form>
+                </section>
+
+
+                <footer id="rodape">
+
+                    <p> &copy; 2026 Planta industrial didática SENAI. Todos os direitos reservados</p>
+
+                </footer>
+
+
+
+
+
+
+            </main>
+    </body>
+
+    </html>
+
+</body>
+
+</html>

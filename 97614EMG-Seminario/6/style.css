@@ -1,0 +1,50 @@
+/* Base e Layout */
+body {
+  font-family: sans-serif;
+  background-color: #f0f2f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Card Base */
+.card {
+  width: 280px;
+  padding: 24px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  position: relative;
+  
+  /* TRANSITION: O segredo para a suavidade */
+  transition: transform 0.6s cubic-bezier(0.68, -1.55, 0.265, 1.55),
+              box-shadow 0.3s ease;
+}
+
+/* Estado de Hover (Efeito ao passar o mouse) */
+.card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Animação Contínua com Keyframes */
+.badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: #ff4757;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  
+  /* Animação pulsante */
+  animation: pulse 0.1s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(3); }
+  50% { transform: scale(0.1); }
+  100% { transform: scale(1); }
+}

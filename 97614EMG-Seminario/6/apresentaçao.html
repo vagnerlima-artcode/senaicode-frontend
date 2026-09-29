@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Meu Banner</title>
+
+    <style>
+
+        /* =========================
+           CORES
+        ========================= */
+
+        :root {
+            --principal: #17d557;
+            --preto: #111111;
+            --fundo: #f5f2e9;
+            --branco: #ffffff;
+            --cinza: #555555;
+        }
+
+
+        /* CONFIGURAÇÃO GERAL */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #222;
+
+            min-height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        /* BANNER */
+
+        .banner {
+            width: 1200px;
+            max-width: 95%;
+
+            background: var(--fundo);
+
+            overflow: hidden;
+        }
+
+
+        /* TOPO */
+
+        header {
+            display: flex;
+
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 25px 45px;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+
+            color: var(--preto);
+        }
+
+        .contato {
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+
+        /* CONTEÚDO */
+
+        main {
+            display: grid;
+
+            grid-template-columns: 220px 1fr 350px;
+
+            align-items: center;
+
+            gap: 30px;
+
+            padding: 40px 45px;
+        }
+
+
+        /* SERVIÇOS */
+
+        .servicos {
+            border-left: 4px solid var(--principal);
+
+            padding-left: 15px;
+        }
+
+        .servicos h3 {
+            font-size: 13px;
+
+            margin-bottom: 20px;
+        }
+
+        .servicos p {
+            color: var(--cinza);
+
+            font-size: 14px;
+
+            margin-bottom: 15px;
+        }
+
+
+        /* TEXTO */
+
+        .texto small {
+            font-size: 13px;
+
+            letter-spacing: 2px;
+
+            font-weight: bold;
+        }
+
+        h1 {
+            font-size: 48px;
+
+            line-height: 1;
+
+            margin-top: 15px;
+
+            color: var(--preto);
+        }
+
+        h1 span {
+            display: block;
+
+            color: var(--principal);
+        }
+
+        .texto > p {
+            color: var(--cinza);
+
+            font-size: 16px;
+
+            line-height: 1.5;
+
+            margin-top: 20px;
+
+            max-width: 400px;
+        }
+
+
+        /* BOTÃO */
+
+        button {
+            margin-top: 25px;
+
+            padding: 13px 25px;
+
+            border: none;
+
+            background: var(--preto);
+
+            color: var(--branco);
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: var(--principal);
+
+            color: var(--preto);
+        }
+
+
+        /* IMAGEM */
+
+        .imagem {
+            display: flex;
+
+            justify-content: center;
+        }
+
+        .imagem img {
+            width: 320px;
+            height: 390px;
+
+            object-fit: cover;
+
+            border-radius: 10px;
+        }
+
+
+        /* RODAPÉ */
+
+        footer {
+            display: flex;
+
+            justify-content: space-between;
+
+            padding: 18px 45px;
+
+            background: var(--preto);
+
+            color: var(--branco);
+
+            font-size: 13px;
+        }
+
+
+        /* CELULAR */
+
+        @media (max-width: 850px) {
+
+            main {
+                grid-template-columns: 1fr;
+
+                text-align: center;
+            }
+
+            .servicos {
+                display: none;
+            }
+
+            .texto > p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .imagem img {
+                width: 280px;
+                height: 330px;
+            }
+
+            footer {
+                flex-direction: column;
+
+                gap: 10px;
+
+                text-align: center;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <div class="banner">
+
+        <!-- TOPO -->
+
+        <header>
+
+            <div class="logo">
+                SEU LOGO
+            </div>
+
+            <div class="contato">
+                (71) 4002-8922
+            </div>
+
+        </header>
+
+
+        <!-- CONTEÚDO -->
+
+        <main>
+
+
+            <!-- SERVIÇOS -->
+
+            <section class="servicos">
+
+                <h3>O QUE OFERECEMOS</h3>
+
+                <p>✓ Serviço profissional</p>
+
+                <p>✓ Atendimento personalizado</p>
+
+                <p>✓ Qualidade e segurança</p>
+
+                <p>✓ Soluções eficientes</p>
+
+            </section>
+
+
+            <!-- TEXTO PRINCIPAL -->
+
+            <section class="texto">
+
+                <small>
+                    SOLUÇÕES PARA VOCÊ
+                </small>
+
+                <h1>
+                    SEU NEGÓCIO
+                    <span>MAIS PROFISSIONAL</span>
+                </h1>
+
+                <p>
+                    Transformamos ideias em soluções
+                    modernas, práticas e eficientes.
+                </p>
+
+                <button>
+                    SAIBA MAIS
+                </button>
+
+            </section>
+
+
+            <!-- IMAGEM -->
+
+            <section class="imagem">
+
+                <img
+                    src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=700&q=80"
+                    alt="Pessoa trabalhando">
+
+            </section>
+
+
+        </main>
+
+
+        <!-- RODAPÉ -->
+
+        <footer>
+
+            <span>
+                www.seusite.com
+            </span>
+
+            <span>
+                Camaçari - BA
+            </span>
+
+            <span>
+                @seunegocio
+            </span>
+
+        </footer>
+
+
+    </div>
+
+</body>
+
+</html>

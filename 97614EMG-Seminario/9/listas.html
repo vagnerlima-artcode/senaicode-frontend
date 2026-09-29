@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <style>
+
+        * {
+            margin: 30px;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .form-group {
+            list-style: none;
+            margin-bottom: -50px;
+        }
+
+        .section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: row;
+            
+        }
+
+        #menu {
+
+            border: 3px solid black;
+            padding: 5px 10px;
+            
+        }
+       
+
+        .form {
+            position: relative;
+            margin-top: -10px;
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            
+
+
+        }
+
+        #menos {
+            height: 250px;
+            border: 3px solid black;
+            padding: 5px 10px;
+        }
+
+    </style>
+<section class="section"> 
+    <menu class="menu" id="menu">              <!-- Menu -->
+    <ul>            <!-- Lista -->
+        <li>Início</li>   <!-- Item 1 -->
+        <li>Sobre</li>    <!-- Item 2 -->
+        <li>Contato</li>  <!-- Item 3 -->
+    </ul>
+</menu>
+
+<ol class = "ol" id = "menu">                <!-- Lista ordenada -->
+    <li class="ol-item">Item 1</li>      <!-- Item 1 -->
+    <li class="ol-item">Item 2</li>      <!-- Item 2 -->
+    <li class="ol-item">Item 3</li>      <!-- Item 3 -->
+
+</ol>
+
+<menu class="form" id = "menos">              <!-- Menu -->
+
+    <li class="form-group"><button onclick="negrito()">Negrito</button></li>
+    <li class="form-group"><button onclick="italico()">Itálico</button></li>
+    <li class="form-group"><button onclick="salvar()">Salvar</button></li>
+</menu>
+
+</section>
+    
+</body>
+</html>

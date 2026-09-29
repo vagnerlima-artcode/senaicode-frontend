@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SENAI - Ordem de Serviço</title>
+</head>
+
+<body>
+
+    <h1>SENAI - Controle de Manutenção Industrial</h1>
+
+    <main>
+
+        <h2>Abertura de Ordem de Serviço</h2>
+
+        <form>
+
+            <!-- FIELDSET 1 -->
+            <fieldset>
+
+                <legend>Identificação do Solicitante</legend>
+
+                <label for="nome">Nome do funcionário:</label><br>
+
+                <input
+                    type="text"
+                    id="nome"
+                    name="nome"
+                    placeholder="Digite seu nome completo"
+                    required
+                >
+
+                <br><br>
+
+                <label for="matricula">Matrícula SENAI:</label><br>
+
+                <input
+                    type="text"
+                    id="matricula"
+                    name="matricula"
+                    placeholder="Ex: SN1234"
+                    required
+                >
+
+            </fieldset>
+
+            <br>
+
+            <!-- FIELDSET 2 -->
+            <fieldset>
+
+                <legend>Dados do Equipamento</legend>
+
+                <label for="equipamento">Equipamento:</label><br>
+
+                <input
+                    type="text"
+                    id="equipamento"
+                    name="equipamento"
+                    placeholder="Ex: Torno CNC R-200"
+                    required
+                >
+
+                <br><br>
+
+                <label for="defeito">Descrição do defeito:</label><br>
+
+                <textarea
+                    id="defeito"
+                    name="defeito"
+                    rows="5"
+                    cols="40"
+                    placeholder="Descreva o problema encontrado no equipamento..."
+                    required
+                ></textarea>
+
+            </fieldset>
+
+            <br>
+
+            <button type="submit">
+                Registrar Ordem de Serviço
+            </button>
+
+            <button type="reset">
+                Limpar Formulário
+            </button>
+
+        </form>
+
+    </main>
+
+</body>
+
+</html>

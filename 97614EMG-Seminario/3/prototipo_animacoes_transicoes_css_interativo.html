@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Protótipo Interativo - Animações e Transições CSS</title>
+
+<style>
+:root{
+  --basic-duration:.5s;
+  --basic-scale:1.2;
+  --spring-duration:.8s;
+  --spring-easing:cubic-bezier(.68,-.55,.27,1.55);
+  --move-duration:2s;
+  --move-count:infinite;
+  --move-easing:ease-in-out;
+  --pulse-duration:1.2s;
+  --loader-duration:.8s;
+  --card-distance:-12px;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#0f172a;
+  color:#e5e7eb;
+  line-height:1.55;
+}
+
+nav{
+  position:sticky;
+  top:0;
+  z-index:20;
+  background:rgba(15,23,42,.95);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid #334155;
+  padding:12px 5%;
+}
+
+nav a{
+  color:#cbd5e1;
+  text-decoration:none;
+  margin-right:18px;
+  font-size:14px;
+}
+
+nav a:hover{color:#fff}
+
+header{
+  min-height:54vh;
+  display:grid;
+  place-items:center;
+  text-align:center;
+  padding:70px 20px;
+  background:radial-gradient(circle at top,#1d4ed8 0,#172554 35%,#0f172a 70%);
+}
+
+header h1{
+  font-size:clamp(2.2rem,6vw,5rem);
+  margin:0;
+  letter-spacing:-2px;
+}
+
+header p{
+  max-width:760px;
+  color:#bfdbfe;
+  font-size:1.1rem;
+}
+
+.tag{
+  display:inline-block;
+  border:1px solid #60a5fa;
+  padding:6px 12px;
+  border-radius:999px;
+  color:#bfdbfe;
+  margin-bottom:18px;
+}
+
+main{
+  width:min(1100px,92%);
+  margin:40px auto 80px;
+}
+
+.card-section{
+  background:#111827;
+  border:1px solid #334155;
+  border-radius:22px;
+  padding:32px;
+  margin:28px 0;
+  box-shadow:0 20px 45px rgba(0,0,0,.22);
+}
+
+h2{
+  font-size:1.8rem;
+  margin-top:0;
+}
+
+h3{margin-bottom:8px}
+
+p.muted{color:#94a3b8}
+
+.stage{
+  min-height:220px;
+  display:grid;
+  place-items:center;
+  background:#020617;
+  border:1px solid #1e293b;
+  border-radius:18px;
+  margin-top:22px;
+  padding:28px;
+  overflow:hidden;
+}
+
+.btn{
+  border:0;
+  border-radius:12px;
+  padding:16px 28px;
+  font-size:17px;
+  font-weight:700;
+  cursor:pointer;
+  color:white;
+  background:#2563eb;
+}
+
+.btn-basic{
+  transition:all var(--basic-duration) ease;
+}
+
+.btn-basic:hover,
+.btn-basic.demo-active{
+  background:#7c3aed;
+  transform:scale(var(--basic-scale));
+}
+
+.btn-spring{
+  background:#059669;
+  transition:all var(--spring-duration) var(--spring-easing);
+}
+
+.btn-spring:hover,
+.btn-spring.demo-active{
+  background:#047857;
+  transform:scale(1.35) rotate(3deg);
+}
+
+.compare{
+  display:flex;
+  gap:26px;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+
+.linear{
+  transition:transform 1s linear;
+  background:#db2777;
+}
+
+.ease{
+  transition:transform 1s ease;
+  background:#9333ea;
+}
+
+.compare .btn:hover,
+.compare .btn.demo-active{
+  transform:translateY(-55px);
+}
+
+.track{
+  width:min(760px,95%);
+  height:130px;
+  position:relative;
+}
+
+.box{
+  width:80px;
+  height:80px;
+  position:absolute;
+  top:25px;
+  left:calc(50% - 40px);
+  animation-name:mover;
+  animation-duration:var(--move-duration);
+  animation-iteration-count:var(--move-count);
+  animation-direction:alternate;
+  animation-timing-function:var(--move-easing);
+}
+
+.box.paused,
+.pulse.paused,
+.loader.paused{
+  animation-play-state:paused;
+}
+
+@keyframes mover{
+  0%{
+    transform:translateX(-280px) rotate(0);
+    background:#ef4444;
+    border-radius:12px;
+  }
+  50%{
+    transform:translateX(0) rotate(180deg);
+    background:#f59e0b;
+    border-radius:50%;
+  }
+  100%{
+    transform:translateX(280px) rotate(360deg);
+    background:#3b82f6;
+    border-radius:12px;
+  }
+}
+
+.pulse{
+  width:90px;
+  height:90px;
+  border-radius:50%;
+  background:#8b5cf6;
+  animation:pulse var(--pulse-duration) infinite;
+}
+
+@keyframes pulse{
+  0%,100%{
+    transform:scale(1);
+    box-shadow:0 0 0 0 rgba(139,92,246,.6);
+  }
+  50%{
+    transform:scale(1.2);
+    box-shadow:0 0 0 28px rgba(139,92,246,0);
+  }
+}
+
+.loader{
+  width:70px;
+  height:70px;
+  border-radius:50%;
+  border:8px solid #1e293b;
+  border-top-color:#38bdf8;
+  animation:spin var(--loader-duration) linear infinite;
+}
+
+@keyframes spin{
+  to{transform:rotate(360deg)}
+}
+
+.real-card{
+  width:min(320px,90%);
+  background:#1e293b;
+  border:1px solid #334155;
+  border-radius:18px;
+  padding:24px;
+  transition:all .4s ease;
+}
+
+.real-card:hover,
+.real-card.demo-active{
+  transform:translateY(var(--card-distance));
+  border-color:#60a5fa;
+  box-shadow:0 25px 55px rgba(37,99,235,.25);
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:18px;
+}
+
+.mini{
+  background:#0f172a;
+  border:1px solid #334155;
+  padding:20px;
+  border-radius:16px;
+}
+
+.code{
+  font-family:Consolas,monospace;
+  background:#020617;
+  color:#dbeafe;
+  border-radius:12px;
+  padding:14px 16px;
+  overflow:auto;
+  font-size:13px;
+  margin-top:16px;
+}
+
+.badge{
+  font-family:Consolas,monospace;
+  color:#93c5fd;
+}
+
+.controls{
+  margin-top:18px;
+  display:grid;
+  gap:14px;
+  padding:18px;
+  background:#0b1220;
+  border:1px solid #263449;
+  border-radius:16px;
+}
+
+.controls h3{
+  margin:0 0 4px;
+  color:#f8fafc;
+}
+
+.control-row{
+  display:grid;
+  grid-template-columns:minmax(180px,1fr) minmax(210px,2fr) 85px;
+  align-items:center;
+  gap:14px;
+}
+
+.control-row label{
+  font-weight:700;
+  color:#cbd5e1;
+}
+
+.control-row output{
+  text-align:center;
+  font-family:Consolas,monospace;
+  background:#111827;
+  border:1px solid #334155;
+  border-radius:8px;
+  padding:7px;
+  color:#93c5fd;
+}
+
+input[type="range"]{
+  width:100%;
+  cursor:pointer;
+}
+
+select{
+  width:100%;
+  padding:10px;
+  border-radius:9px;
+  border:1px solid #475569;
+  background:#111827;
+  color:#e5e7eb;
+  font-size:14px;
+}
+
+.action-row{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:2px;
+}
+
+.action{
+  border:1px solid #475569;
+  background:#1e293b;
+  color:#f8fafc;
+  padding:10px 14px;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:700;
+}
+
+.action:hover{background:#334155}
+
+.action.primary{
+  background:#2563eb;
+  border-color:#2563eb;
+}
+
+.action.primary:hover{background:#1d4ed8}
+
+.live-note{
+  margin:12px 0 0;
+  color:#fbbf24;
+  font-size:14px;
+}
+
+.footer{
+  text-align:center;
+  color:#64748b;
+  padding:30px;
+}
+
+@media(max-width:720px){
+  .control-row{
+    grid-template-columns:1fr;
+  }
+
+  .control-row output{
+    text-align:left;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <a href="#transicao">Transição</a>
+  <a href="#bezier">Cubic-bezier</a>
+  <a href="#keyframes">@keyframes</a>
+  <a href="#extras">Exemplos reais</a>
+</nav>
+
+<header>
+  <div>
+    <span class="tag">Demonstração prática interativa</span>
+    <h1>Animações e<br>Transições CSS</h1>
+    <p>
+      Agora você pode alterar os valores diretamente na página durante a apresentação,
+      sem precisar editar o CSS toda hora.
+    </p>
+  </div>
+</header>
+
+<main>
+
+<section class="card-section" id="transicao">
+  <h2>1. Transição com <span class="badge">:hover</span></h2>
+  <p class="muted">
+    A mudança de cor e tamanho acontece suavemente graças à propriedade <b>transition</b>.
+  </p>
+
+  <div class="stage">
+    <button class="btn btn-basic" id="basicButton">Passe o mouse</button>
+  </div>
+
+  <div class="controls">
+    <h3>🎛️ Controles ao vivo</h3>
+
+    <div class="control-row">
+      <label for="transitionDuration">Duração da transição</label>
+      <input id="transitionDuration" type="range" min="0.1" max="3" step="0.1" value="0.5">
+      <output id="transitionDurationValue">0.5s</output>
+    </div>
+
+    <div class="control-row">
+      <label for="transitionScale">Tamanho no hover</label>
+      <input id="transitionScale" type="range" min="1" max="1.8" step="0.05" value="1.2">
+      <output id="transitionScaleValue">1.20x</output>
+    </div>
+
+    <div class="action-row">
+      <button class="action primary" id="testBasic">Testar efeito</button>
+      <button class="action" id="resetBasic">Voltar ao padrão</button>
+    </div>
+  </div>
+
+  <div class="code" id="basicCode">
+transition: all 0.5s ease;<br>
+transform: scale(1.2);
+  </div>
+
+  <p class="live-note">
+    Durante a apresentação, arraste os controles e mostre como o efeito muda instantaneamente.
+  </p>
+</section>
+
+<section class="card-section" id="bezier">
+  <h2>2. Movimento com <span class="badge">cubic-bezier()</span></h2>
+  <p class="muted">
+    Uma curva personalizada muda a sensação do movimento.
+  </p>
+
+  <div class="stage">
+    <button class="btn btn-spring" id="springButton">Efeito de mola</button>
+  </div>
+
+  <div class="controls">
+    <h3>🎛️ Controles ao vivo</h3>
+
+    <div class="control-row">
+      <label for="springDuration">Duração</label>
+      <input id="springDuration" type="range" min="0.2" max="3" step="0.1" value="0.8">
+      <output id="springDurationValue">0.8s</output>
+    </div>
+
+    <div class="control-row">
+      <label for="easingPreset">Curva de movimento</label>
+      <select id="easingPreset">
+        <option value="cubic-bezier(.68,-.55,.27,1.55)">Mola — cubic-bezier</option>
+        <option value="ease">ease</option>
+        <option value="linear">linear</option>
+        <option value="ease-in">ease-in</option>
+        <option value="ease-out">ease-out</option>
+        <option value="ease-in-out">ease-in-out</option>
+      </select>
+      <output id="easingName">Mola</output>
+    </div>
+
+    <div class="action-row">
+      <button class="action primary" id="testSpring">Testar efeito</button>
+      <button class="action" id="resetSpring">Voltar ao padrão</button>
+    </div>
+  </div>
+
+  <div class="code" id="springCode">
+transition: all 0.8s cubic-bezier(.68,-.55,.27,1.55);
+  </div>
+
+  <h3>Comparação: linear x ease</h3>
+  <div class="stage compare">
+    <button class="btn linear" id="linearButton">linear</button>
+    <button class="btn ease" id="easeButton">ease</button>
+  </div>
+
+  <div class="action-row" style="margin-top:14px">
+    <button class="action primary" id="testCompare">Testar os dois juntos</button>
+  </div>
+</section>
+
+<section class="card-section" id="keyframes">
+  <h2>3. Animação com <span class="badge">@keyframes</span></h2>
+  <p class="muted">
+    A caixa passa por três etapas: 0%, 50% e 100%.
+  </p>
+
+  <div class="stage">
+    <div class="track">
+      <div class="box" id="movingBox"></div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <h3>🎛️ Controles ao vivo</h3>
+
+    <div class="control-row">
+      <label for="animationDuration">Duração da animação</label>
+      <input id="animationDuration" type="range" min="0.5" max="6" step="0.5" value="2">
+      <output id="animationDurationValue">2s</output>
+    </div>
+
+    <div class="control-row">
+      <label for="iterationCount">Quantidade de repetições</label>
+      <select id="iterationCount">
+        <option value="infinite">Infinita</option>
+        <option value="1">1 vez</option>
+        <option value="2">2 vezes</option>
+        <option value="3">3 vezes</option>
+        <option value="5">5 vezes</option>
+      </select>
+      <output id="iterationValue">∞</output>
+    </div>
+
+    <div class="control-row">
+      <label for="animationEasing">Velocidade</label>
+      <select id="animationEasing">
+        <option value="ease-in-out">ease-in-out</option>
+        <option value="linear">linear</option>
+        <option value="ease">ease</option>
+        <option value="ease-in">ease-in</option>
+        <option value="ease-out">ease-out</option>
+      </select>
+      <output id="animationEasingValue">ease-in-out</output>
+    </div>
+
+    <div class="action-row">
+      <button class="action primary" id="pauseMove">Pausar</button>
+      <button class="action" id="restartMove">Reiniciar animação</button>
+      <button class="action" id="resetMove">Voltar ao padrão</button>
+    </div>
+  </div>
+
+  <div class="code" id="animationCode">
+animation: mover 2s infinite alternate ease-in-out;
+  </div>
+</section>
+
+<section class="card-section" id="extras">
+  <h2>4. Exemplos de uso real</h2>
+
+  <div class="grid">
+
+    <div class="mini">
+      <h3>Carregamento</h3>
+      <p class="muted">Rotação contínua com @keyframes.</p>
+      <div class="stage">
+        <div class="loader" id="loader"></div>
+      </div>
+
+      <div class="controls">
+        <div class="control-row">
+          <label for="loaderSpeed">Velocidade</label>
+          <input id="loaderSpeed" type="range" min="0.2" max="3" step="0.1" value="0.8">
+          <output id="loaderSpeedValue">0.8s</output>
+        </div>
+        <div class="action-row">
+          <button class="action" id="pauseLoader">Pausar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="mini">
+      <h3>Pulso de atenção</h3>
+      <p class="muted">Pode destacar um aviso ou status.</p>
+      <div class="stage">
+        <div class="pulse" id="pulse"></div>
+      </div>
+
+      <div class="controls">
+        <div class="control-row">
+          <label for="pulseSpeed">Velocidade</label>
+          <input id="pulseSpeed" type="range" min="0.4" max="3" step="0.1" value="1.2">
+          <output id="pulseSpeedValue">1.2s</output>
+        </div>
+        <div class="action-row">
+          <button class="action" id="pausePulse">Pausar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="mini">
+      <h3>Card interativo</h3>
+      <p class="muted">Feedback visual ao passar o mouse.</p>
+      <div class="stage">
+        <div class="real-card" id="realCard">
+          <h3>Projeto Web</h3>
+          <p>Este card sobe, muda a borda e ganha sombra.</p>
+        </div>
+      </div>
+
+      <div class="controls">
+        <div class="control-row">
+          <label for="cardDistance">Quanto o card sobe</label>
+          <input id="cardDistance" type="range" min="0" max="35" step="1" value="12">
+          <output id="cardDistanceValue">12px</output>
+        </div>
+        <div class="action-row">
+          <button class="action primary" id="testCard">Testar efeito</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<div class="footer">
+  Protótipo interativo para apresentação — Animações e Transições CSS
+</div>
+
+<script>
+const root = document.documentElement;
+
+function flashClass(element, className = "demo-active", time = 1100){
+  element.classList.remove(className);
+  void element.offsetWidth;
+  element.classList.add(className);
+  setTimeout(() => element.classList.remove(className), time);
+}
+
+// TRANSIÇÃO
+const transitionDuration = document.getElementById("transitionDuration");
+const transitionScale = document.getElementById("transitionScale");
+const transitionDurationValue = document.getElementById("transitionDurationValue");
+const transitionScaleValue = document.getElementById("transitionScaleValue");
+const basicCode = document.getElementById("basicCode");
+const basicButton = document.getElementById("basicButton");
+
+function updateBasic(){
+  const duration = transitionDuration.value;
+  const scale = transitionScale.value;
+  root.style.setProperty("--basic-duration", duration + "s");
+  root.style.setProperty("--basic-scale", scale);
+  transitionDurationValue.textContent = duration + "s";
+  transitionScaleValue.textContent = Number(scale).toFixed(2) + "x";
+  basicCode.innerHTML =
+    `transition: all ${duration}s ease;<br>transform: scale(${Number(scale).toFixed(2)});`;
+}
+
+transitionDuration.addEventListener("input", updateBasic);
+transitionScale.addEventListener("input", updateBasic);
+
+document.getElementById("testBasic").addEventListener("click", () => flashClass(basicButton));
+
+document.getElementById("resetBasic").addEventListener("click", () => {
+  transitionDuration.value = "0.5";
+  transitionScale.value = "1.2";
+  updateBasic();
+  flashClass(basicButton);
+});
+
+// CUBIC-BEZIER
+const springDuration = document.getElementById("springDuration");
+const easingPreset = document.getElementById("easingPreset");
+const springDurationValue = document.getElementById("springDurationValue");
+const easingName = document.getElementById("easingName");
+const springCode = document.getElementById("springCode");
+const springButton = document.getElementById("springButton");
+
+function friendlyEasing(value){
+  if(value.startsWith("cubic-bezier")) return "Mola";
+  return value;
+}
+
+function updateSpring(){
+  const duration = springDuration.value;
+  const easing = easingPreset.value;
+
+  root.style.setProperty("--spring-duration", duration + "s");
+  root.style.setProperty("--spring-easing", easing);
+
+  springDurationValue.textContent = duration + "s";
+  easingName.textContent = friendlyEasing(easing);
+  springCode.textContent = `transition: all ${duration}s ${easing};`;
+}
+
+springDuration.addEventListener("input", updateSpring);
+easingPreset.addEventListener("change", () => {
+  updateSpring();
+  flashClass(springButton, "demo-active", 1300);
+});
+
+document.getElementById("testSpring").addEventListener("click", () => flashClass(springButton, "demo-active", 1300));
+
+document.getElementById("resetSpring").addEventListener("click", () => {
+  springDuration.value = "0.8";
+  easingPreset.value = "cubic-bezier(.68,-.55,.27,1.55)";
+  updateSpring();
+  flashClass(springButton, "demo-active", 1300);
+});
+
+document.getElementById("testCompare").addEventListener("click", () => {
+  flashClass(document.getElementById("linearButton"), "demo-active", 1300);
+  flashClass(document.getElementById("easeButton"), "demo-active", 1300);
+});
+
+// KEYFRAMES
+const animationDuration = document.getElementById("animationDuration");
+const iterationCount = document.getElementById("iterationCount");
+const animationEasing = document.getElementById("animationEasing");
+const animationDurationValue = document.getElementById("animationDurationValue");
+const iterationValue = document.getElementById("iterationValue");
+const animationEasingValue = document.getElementById("animationEasingValue");
+const animationCode = document.getElementById("animationCode");
+const movingBox = document.getElementById("movingBox");
+const pauseMove = document.getElementById("pauseMove");
+
+function restartAnimation(element){
+  const oldAnimation = element.style.animation;
+  element.style.animation = "none";
+  void element.offsetWidth;
+  element.style.animation = oldAnimation;
+}
+
+function updateMove(){
+  const duration = animationDuration.value;
+  const count = iterationCount.value;
+  const easing = animationEasing.value;
+
+  root.style.setProperty("--move-duration", duration + "s");
+  root.style.setProperty("--move-count", count);
+  root.style.setProperty("--move-easing", easing);
+
+  animationDurationValue.textContent = duration + "s";
+  iterationValue.textContent = count === "infinite" ? "∞" : count + "x";
+  animationEasingValue.textContent = easing;
+
+  animationCode.textContent =
+    `animation: mover ${duration}s ${count} alternate ${easing};`;
+}
+
+animationDuration.addEventListener("input", updateMove);
+iterationCount.addEventListener("change", () => {
+  updateMove();
+  restartAnimation(movingBox);
+});
+animationEasing.addEventListener("change", updateMove);
+
+pauseMove.addEventListener("click", () => {
+  movingBox.classList.toggle("paused");
+  pauseMove.textContent = movingBox.classList.contains("paused") ? "Continuar" : "Pausar";
+});
+
+document.getElementById("restartMove").addEventListener("click", () => {
+  movingBox.classList.remove("paused");
+  pauseMove.textContent = "Pausar";
+  restartAnimation(movingBox);
+});
+
+document.getElementById("resetMove").addEventListener("click", () => {
+  animationDuration.value = "2";
+  iterationCount.value = "infinite";
+  animationEasing.value = "ease-in-out";
+  movingBox.classList.remove("paused");
+  pauseMove.textContent = "Pausar";
+  updateMove();
+  restartAnimation(movingBox);
+});
+
+// LOADER
+const loaderSpeed = document.getElementById("loaderSpeed");
+const loaderSpeedValue = document.getElementById("loaderSpeedValue");
+const loader = document.getElementById("loader");
+const pauseLoader = document.getElementById("pauseLoader");
+
+loaderSpeed.addEventListener("input", () => {
+  root.style.setProperty("--loader-duration", loaderSpeed.value + "s");
+  loaderSpeedValue.textContent = loaderSpeed.value + "s";
+});
+
+pauseLoader.addEventListener("click", () => {
+  loader.classList.toggle("paused");
+  pauseLoader.textContent = loader.classList.contains("paused") ? "Continuar" : "Pausar";
+});
+
+// PULSO
+const pulseSpeed = document.getElementById("pulseSpeed");
+const pulseSpeedValue = document.getElementById("pulseSpeedValue");
+const pulse = document.getElementById("pulse");
+const pausePulse = document.getElementById("pausePulse");
+
+pulseSpeed.addEventListener("input", () => {
+  root.style.setProperty("--pulse-duration", pulseSpeed.value + "s");
+  pulseSpeedValue.textContent = pulseSpeed.value + "s";
+});
+
+pausePulse.addEventListener("click", () => {
+  pulse.classList.toggle("paused");
+  pausePulse.textContent = pulse.classList.contains("paused") ? "Continuar" : "Pausar";
+});
+
+// CARD
+const cardDistance = document.getElementById("cardDistance");
+const cardDistanceValue = document.getElementById("cardDistanceValue");
+const realCard = document.getElementById("realCard");
+
+cardDistance.addEventListener("input", () => {
+  root.style.setProperty("--card-distance", "-" + cardDistance.value + "px");
+  cardDistanceValue.textContent = cardDistance.value + "px";
+});
+
+document.getElementById("testCard").addEventListener("click", () => flashClass(realCard, "demo-active", 1200));
+
+// Valores iniciais
+updateBasic();
+updateSpring();
+updateMove();
+</script>
+
+</body>
+</html>

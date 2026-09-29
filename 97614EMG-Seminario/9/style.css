@@ -1,0 +1,183 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    background-color: #f3eed5;
+
+}
+
+#Dashboard {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.tabela {
+    max-width: 800px;
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th,
+td {
+    border: 1px solid #a28a8a;
+    padding: 12px;
+    text-align: left;
+}
+
+#cabecalho {
+    background: linear-gradient(to bottom, #bdbda6, #f3eed5);
+    color: #000000;
+    font-weight: bold;
+    font-size: 16px;
+    width: 100%;
+    max-width: auto;
+    height: 60px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding-left: 0px;
+    gap: 20px;
+    width: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: #000000;
+}
+
+li {
+    list-style: none;
+}
+
+.formulario {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+    gap: 20px;
+    width: 100%;
+    max-width: 1040px;
+    margin: 20px auto;
+}
+
+.form-group,
+.form-group-2 {
+    flex: 0 1 500px;
+    min-width: 320px;
+    max-width: 500px;
+    padding: 20px;
+    border: 1px solid #a28a8a;
+    background-color: transparent;
+}
+
+.formulario fieldset {
+    width: 100%;
+    min-width: 0;
+}
+
+
+.formulario button {
+    flex: 0 0 auto;
+    align-self: center;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #000;
+    background-color: #bdbda6;
+    border: 1px solid #a28a8a;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+
+
+.form-title {
+    justify-content: center;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+footer {
+    margin-top: 60px;
+}
+
+.item-menu {
+    display: flex;
+}
+
+.principal {
+    position: relative;
+    display: inline-block;
+}
+
+.menu {
+    padding: 10px 15px;
+    background-color: #f3eed5;
+    color: #000000;
+    border-radius: 6px;
+    list-style: none;
+}
+
+.list {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 160px;
+    padding: 8px 0;
+    background-color: #f3eed5;
+    border-radius: 6px;
+    z-index: 10;
+
+}
+
+.principal[open] .list {
+    display: block;
+}
+
+.principal:hover .list {
+    display: block;
+
+}
+
+.list a {
+
+    display: block;
+    padding: 8px 15px;
+
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#rodape {
+    margin-top: 60px;
+    margin-left: -220px;
+    font-size: 14px;
+    color: #000000;
+    position: absolute;
+}

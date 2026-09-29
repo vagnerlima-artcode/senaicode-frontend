@@ -1,0 +1,192 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+body {
+    background-color: #ebeded;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.navbar {
+    width: 100%;
+    background-color: #2c3e50;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+}
+
+
+.logo {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+
+.nav-links a {
+    color: #1d1c1c;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+
+.container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+}
+
+
+.card {
+    background-color: #e2c3ee;
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 480px;
+    width: 100%;
+}
+
+
+.card h1 {
+    color: #090909;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+
+.card p {
+    color: #4a3352;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
+
+
+.form-contacto {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+.form-contacto input,
+.form-contacto textarea {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    outline: none;
+}
+
+
+.form-contacto button {
+    padding: 10px;
+    border: none;
+    background-color: #ffffff;
+    color: #333333;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+
+.form-contacto button:hover {
+    background-color: #f0f0f0;
+}
+
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2c3e50;
+    color: white;
+    padding: 1rem 2rem;
+    position: relative;
+}
+
+
+.menu {
+    display: flex;
+    gap: 1.5rem;
+}
+
+
+.menu a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+
+.menu a:hover {
+    color: #1abc9c;
+}
+
+
+/* Esconde o checkbox e o botão hamburger por padrão (Desktop) */
+#menu-toggle, .hamburger {
+    display: none;
+}
+
+
+/* Responsividade para Celulares (Mobile) */
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+    }
+
+
+    .hamburger span {
+        width: 25px;
+        height: 3px;
+        background-color: white;
+        transition: 0.3s;
+    }
+
+
+    .menu {
+        display: none; /* Escondido inicialmente no mobile */
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #34495e;
+        padding: 1rem;
+        text-align: center;
+    }
+
+
+    /* Quando o checkbox for marcado, mostra o menu */
+    #menu-toggle:checked ~ .menu {
+        display: flex;
+    }
+}
+

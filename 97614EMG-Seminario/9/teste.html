@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Formulário</title>
+</head>
+<body>
+	<form action="#" method="post">
+		<fieldset>
+			<legend>Selecionar arquivo</legend>
+			<label for="arquivo">Escolha um PDF ou uma imagem:</label>
+			<input id="arquivo" name="arquivo" type="file" accept=pdf,image/*">
+		</fieldset>
+
+		<fieldset>
+			<legend>Enviar formulário</legend>
+			<button type="submit">Submeter</button>
+		</fieldset>
+
+		<fieldset>
+			<legend>Texto</legend>
+			<label for="texto">Digite algo:</label>
+			<textarea id="texto" name="texto" placeholder="Escreva aqui..."></textarea>
+			<button type="reset">Apagar tudo</button>
+		</fieldset>
+	</form>
+</body>
+</html>

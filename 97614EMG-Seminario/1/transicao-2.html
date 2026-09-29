@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animação e Transição</title>
+    <style>
+        body{
+            display: flex;
+            min-height: 100vh;
+            justify-content: center;
+            align-items: center;
+
+
+        }
+        .caixa{
+            background-color: lavender;
+            width: 70%;
+            padding: 70px;
+        }
+        .item{
+            width: 200px; height: 200px;
+            background-color: midnightblue;
+            border-radius: 50px;
+            transition: transform 0.3s;
+        }
+        .item:hover{
+            transform: steps(5);
+            
+        }
+        h1{
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="caixa">
+        <div class="item"></div>
+    </div>
+    <h1>Deslize</h1>
+</body>
+</html>

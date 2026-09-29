@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Demonstração Prática Cubic-Bezier</title>
+    <style>
+        /* Tudo unificado aqui para funcionar direto */
+        body {
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+
+        /* Área branca onde você vai passar o mouse por cima */
+        .area-teste {
+            width: 500px;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        h3 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        /* Estilo base das barras */
+        .bloco {
+            width: 150px;
+            padding: 15px;
+            margin: 20px 0;
+            color: white;
+            font-weight: bold;
+            border-radius: 6px;
+            /* Avisa que qualquer movimento vai demorar 1 segundo inteiro */
+            transition: transform 1s; 
+        }
+
+        /* Barra 1: Movimento robótico */
+        .padrao {
+            background-color: #718096;
+            transition-timing-function: linear;
+        }
+
+        /* Barra 2: O FOCO - EFEITO MOLA EXAGERADO */
+        .elastico {
+            background-color: #2563eb;
+            /* Esta curva faz a mágica de ir para trás, acelerar e passar do ponto */
+            transition-timing-function: cubic-bezier(0.68, -0.6, 0.32, 1.6);
+        }
+
+        /* AÇÃO: Quando passar o mouse DENTRO da área branca, as duas barras andam */
+        .area-teste:hover .bloco {
+            transform: translateX(250px);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="area-teste">
+        <h3>Coloque o mouse aqui dentro:</h3>
+        
+        <div class="bloco padrao">Robótico (Linear)</div>
+        <div class="bloco elastico">Efeito Mola (Cubic-Bezier)</div>
+    </div>
+
+</body>
+</html>

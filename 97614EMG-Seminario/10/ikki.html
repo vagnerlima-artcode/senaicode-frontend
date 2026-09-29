@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layout de Tela Única</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="bloco-conteudo"></div>
+    <div class="bloco-conteudo"></div>
+
+</body>
+</html>
+<style>
+/* Reseta margens e paddings padrão do navegador para um controle total */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Configura o body para ocupar 100% da tela */
+body {
+    width: 100vw; /* 100% da largura da área visível */
+    height: 100vh; /* 100% da altura da área visível (sem scroll!) */
+    background-color: black;
+
+    /* Configura o body como um container Flexbox */
+    display: flex;
+
+    /* Centraliza os itens horizontalmente */
+    justify-content: center;
+
+    /* Centraliza os itens verticalmente */
+    align-items: center;
+}
+
+/* Estiliza os blocos de conteúdo */
+.bloco-conteudo {
+    width: 200px;
+    height: 200px;
+    background-color: gray;
+    margin: 10px; /* Adiciona um pequeno espaçamento entre os blocos */
+}
+
+</style>

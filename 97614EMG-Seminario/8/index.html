@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplo Eventos CSS</title>
+    <style>
+        /* Estilos do Site */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        
+        .product-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        /* 1. ESCONDE O CHECKBOX REAL*/
+        .toggle-input {
+            display: none;
+        }
+
+        /* 2. O BOTÃO (LABEL)*/
+        .btn-toggle {
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+            margin-top: 15px;
+        }
+
+        .btn-toggle:hover {
+            background-color: #0056b3;
+        }
+
+        /* 3. O PAINEL OCULTO POR PADRÃO */
+        .painel-oculto {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: all 0.4s ease;
+            background: #f8f9fa;
+            border-radius: 6px;
+            margin-top: 0;
+        }
+
+        .painel-oculto p {
+            padding: 15px;
+            margin: 0;
+            font-size: 14px;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        /* 4. A MÁGICA DO EVENTO CSS (:checked) */
+        /* Quando o checkbox for marcado, mostre o painel irmão */
+        .toggle-input:checked ~ .painel-oculto {
+            max-height: 200px;
+            opacity: 1;
+            margin-top: 15px;
+            border: 1px solid #e0e0e0;
+        }
+
+        /* Muda o texto ou estilo do botão quando expandido */
+        .toggle-input:checked ~ .btn-toggle {
+            background-color: #28a745;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="product-card">
+        <h2>Curso de CSS Moderno SENAI</h2>
+        <p>Aprenda a criar layouts incríveis e interativos sem depender de JavaScript, com o PROF. Wagner!</p>
+
+        <!-- O Checkbox oculto que guarda o estado -->
+        <input type="checkbox" id="meu-toggle" class="toggle-input">
+
+        <!-- A Label vinculada ao id do checkbox (funciona como o botão de clique) -->
+        <label for="meu-toggle" class="btn-toggle">Ver Conteúdo do Curso</label>
+
+        <!-- O conteúdo que reage ao evento do checkbox -->
+        <div class="painel-oculto">
+            <p>
+                <strong>O que você vai aprender:</strong><br>
+                • Pseudo-classes (:checked, :hover, :focus)<br>
+                • CSS Grid e Flexbox<br>
+                • Animações e Transições puras
+            </p>
+        </div>
+    </div>
+
+</body>
+</html>
