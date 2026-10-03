@@ -1,0 +1,7 @@
+.custom-toggle.navbar-toggler {
+    border-color: red !important;
+}
+
+.dropdown-menu li a:hover {
+    color: black !important;
+}

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <!-- Custom -->
+    <link rel="stylesheet" href="css/custom.css">
+</head>
+
+<body>
+   <header class="bg-dark text-warning p-3">
+        <nav class="navbar navbar-dark navbar-expand-lg bg-dark" data-bs-theme="light">
+            <div class="container-fluid">
+                <a class="navbar-brand text-light" href="#">
+                    <i class="bi bi-linkedin display-3">
+
+                    </i></a>
+                <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link text-light active" aria-current="page" href="bootstrap.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="quemsomos.html">Quem somos</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-light dropdown-toggle" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Serviços
+                            </a>
+                            <ul class="dropdown-menu bg-dark">
+                                <li><a class="dropdown-item text-light" href="servico1.html">Serviço 1</a></li>
+                                <li><a class="dropdown-item text-light" href="servico2.html">Serviço 2</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item text-light" href="#">Outro Serviço</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="contato.html">Contato</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex" role="search" id="form-busca">
+                        <input class="form-control me-2" type="search" placeholder="Procurar" aria-label="Search"
+                            id="campo-busca" />
+                        <button class="btn btn-outline-warning" type="submit">Procurar</button>
+                    </form>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <style>
+            #carouselExample {
+                min-height: 300px;
+            }
+        </style>
+        <h1 class="display-3 text-center p-3">Serviços</h1>
+        <img src="img/servico.jpg" class="w-100" style="height: 300px; object-fit: cover;">
+
+        <section id="s1">
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- <div class="col-4 bg-danger bs-danger-bg-subtle p-5">
+                        <img src="img/1.jpg" class="w-100 opacity-50">
+                    </div>
+
+                    <div class="col-8 bg-danger-subtle text-danger-emphasis p-5">
+                        <h1>Conheça nossa história</h1>
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolores velit nostrum, deserunt
+                            quisquam rerum unde necessitatibus animi id doloribus amet accusamus ipsa ipsam. Facilis
+                            unde nesciunt voluptates esse recusandae ratione.</p>
+
+                        <p>
+                            <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseWidthExample" aria-expanded="false"
+                                aria-controls="collapseWidthExample">
+                                Saiba mais
+                            </button>
+                        </p>
+                        <div style="min-height: 120px;">
+                            <div class="collapse collapse-horizontal" id="collapseWidthExample">
+                                <div class="card card-body" style="width: 600px;">
+                                    This is some placeholder content for a horizontal collapse. It’s hidden by default
+                                    and shown when triggered.
+                                </div>
+                            </div>
+
+                        </div> -->
+                    </div>
+                </div>
+        </section>
+        <section id="s2">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-8 bg-primary-subtle p-5">
+                        <h2>Principais Serviços</h2>
+                        <p class="">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Blanditiis quia veritatis
+                            ipsam
+                            nulla laboriosam laborum, consequuntur non debitis, qui hic delectus aspernatur cum
+                            asperiores suscipit, molestiae mollitia velit eum tempore. Lorem ipsum dolor sit amet,
+                            consectetur adipisicing elit. Quae magnam vero quo. Molestias quibusdam, ipsum harum veniam
+                            officiis libero eligendi perspiciatis quod at deserunt? Esse laboriosam soluta debitis earum
+                            itaque.</p>
+
+                        <button type="button" class="btn btn-warning btn-lg">Serviços </button>
+
+                    </div>
+                    <div class="col-4 bg-warning p-4">
+                        <img src="img/2.jpg" class="w-100">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="p-5">
+        <div class="row">
+            <div class="col-6 col-md-2 mb-3">
+                <h5>A empresa</h5>
+                <ul class="nav flex-column">
+                    <li class="nav-item mb-2">
+                        <a href="#" class="nav-link p-0 text-body-secondary">Home</a>
+                    </li>
+                    <li class="nav-item mb-2">
+                        <a href="#" class="nav-link p-0 text-body-secondary">Quem Somos</a>
+                    </li>
+                    <li class="nav-item mb-2">
+                        <a href="#" class="nav-link p-0 text-body-secondary">Serviço</a>
+                    </li>
+                    <li class="nav-item mb-2">
+                        <a href="#" class="nav-link p-0 text-body-secondary">Contato</a>
+                    </li>
+                   
+                </ul>
+            </div>
+            <div class="col-6 col-md-2 mb-3">
+                <!-- <h5>Section</h5>
+                <ul class="nav flex-column">
+                    <li class="nav-item mb-2">
+                        <a href="#" class="nav-link p-0 text-body-secondary">Home</a>
+                    </li>
+                    <li class="nav-item mb-2">
+                        <a href="#" class="nav-link p-0 text-body-secondary">Features</a>
+                    </li>
+                    <li class="nav-item mb-2">
+                        <a href="#" class="nav-link p-0 text-body-secondary">Pricing</a>
+                    </li>
+                    <li class="nav-item mb-2">
+                        <a href="#" class="nav-link p-0 text-body-secondary">FAQs</a>
+                    </li>
+                    <li class="nav-item mb-2">
+                        <a href="#" class="nav-link p-0 text-body-secondary">About</a>
+                    </li>
+                </ul> -->
+            </div>
+            <div class="col-6 col-md-2 mb-3">
+                <!-- <h5>Section</h5>
+                <ul class="nav flex-column">
+                    <li class="nav-item mb-2">
+                        <a href="#" class="nav-link p-0 text-body-secondary">Home</a>
+                    </li>
+                    <li class="nav-item mb-2">
+                        <a href="#" class="nav-link p-0 text-body-secondary">Features</a>
+                    </li>
+                    <li class="nav-item mb-2">
+                        <a href="#" class="nav-link p-0 text-body-secondary">Pricing</a>
+                    </li>
+                    <li class="nav-item mb-2">
+                        <a href="#" class="nav-link p-0 text-body-secondary">FAQs</a>
+                    </li>
+                    <li class="nav-item mb-2">
+                        <a href="#" class="nav-link p-0 text-body-secondary">About</a>
+                    </li>
+                </ul> -->
+            </div>
+            <div class="col-md-5 offset-md-1 mb-3">
+                <form>
+                    <h5>Assine nossa Newsletter</h5>
+                    <!-- <p>Monthly digest of what's new and exciting from us.</p> -->
+                    <div class="d-flex flex-column flex-sm-row w-100 gap-2">
+                        <label for="newsletter1" class="visually-hidden">Email Endereço</label>
+                        <input id="newsletter1" type="email" class="form-control" placeholder="Email endereço" />
+                        <button class="btn btn-primary" type="button">Assinar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+         <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
+            <p>&copy; 2027 Minha empresa. Todos os direitos reservados.</p>
+            <ul class="list-unstyled d-flex">
+                <li class="ms-3">
+                    <a class="link-body-emphasis" href="#" aria-label="Instagram"><i
+                            class="bi bi-instagram"></i></a>
+                </li>
+                <li class="ms-3">
+                    <a class="link-body-emphasis" href="#" aria-label="Linkedin"><i class="bi bi-linkedin"></i></a>
+                </li>
+            </ul>
+        </div>
+    </footer>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"
+        integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y"
+        crossorigin="anonymous"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
