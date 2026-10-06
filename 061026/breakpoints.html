@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breakpoints</title>
+    <style>
+        /* Cor padrão (Mobile-First): Telas pequenas / Celulares */
+        body {
+            background-color: #f0f0f0;
+            /* Cinza claro */
+            transition: background-color 0.3s ease;
+            /* Suaviza a transição de cor */
+        }
+
+        /* Breakpoint para telas de até 767px (Celulares) */
+        @media (max-width: 767px) {
+            body {
+                background-color: #ef4444;
+                /* Vermelho */
+            }
+        }
+
+        /* Breakpoint para Tablets e telas médias (a partir de 768px) */
+        @media (min-width: 768px) {
+            body {
+                background-color: #3b82f6;
+                /* Azul */
+            }
+        }
+
+        /* Breakpoint para Desktops e telas grandes (a partir de 1024px) */
+        @media (min-width: 1024px) {
+            body {
+                background-color: #10b981;
+                /* Verde */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Olá Mundo!</h1>
+</body>
+
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript</title>
+</head>
+
+<style>
+    h1{
+        display: ;
+    }
+</style>
+
+<body>
+    <h1 id="titulo">Titulo</h1>
+
+    <button type="button" 
+    onclick="document.getElementById('mensagem').innerHTML = 'Teste' ">
+    Click aqui para mostrar Data e Hora;        
+    </button>
+    <p id="mensagem"></p>
+
+    <p id="para">Some text here</p>
+    <button>blue</button>
+    <button>red</button>
+
+    <br>
+
+    <button onclick="document.getElementById('imagem').src='img/pic_bulbon.gif'">
+    Ligar a lampada
+    </button>
+
+    <img id="imagem" src="img/pic_bulboff.gif" style="width: 100px;">
+
+    <button onclick="document.getElementById('imagem').src='img/pic_bulboff.gif'">
+    Apagar a lampada
+    </button>
+
+
+    <p id="textoExemplo">Texto Exemplo</p>
+
+    <button type="button" onclick="document.getElementById('textoExemplo').style.fontSize='40px'">Click para 40px</button>
+
+    <button type="button" onclick="document.getElementById('textoExemplo').style.fontSize = '14px'">Click para 14px</button>
+
+    <button type="button" onclick="document.getElementById('textoExemplo').style.display='none'">Ocultar</button>
+
+    <button type="button" onclick="document.getElementById('textoExemplo').style.display='block'">Exibir!</button>
+
+</body>
+
+<script>
+
+    const titulo = document.getElementById('titulo')
+    // console.log(titulo);
+
+    function changeColor(newColor) {
+        const elem = document.getElementById("para");
+        elem.style.color = newColor;
+    }
+
+    document.querySelectorAll("button").forEach((button) => {
+        button.addEventListener("click", (event) => {
+            changeColor(event.target.textContent.toLowerCase());
+        });
+    });
+
+
+
+
+
+    let pontuacao = 100;
+    pontuacao = 150;
+
+    const taxaFixa = 0.15;
+    console.log(pontuacao);
+    console.log(taxaFixa);
+    let a = 10;
+    let b = 20;
+
+    const soma = (a, b) => a + b;
+
+    // console.log(soma);
+
+    somar(a, b);
+
+    function somar(a, b) {
+        console.log(a + b);
+        // return a+b;
+    }
+</script>
+
+</html>
