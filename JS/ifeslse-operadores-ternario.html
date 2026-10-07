@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript - IF/ELSE Operadores Ternario</title>
+</head>
+
+<body>
+    <script>
+        var media = 7;
+        var faltaMax = 15;
+
+        var nota = prompt('Digite a nota do aluno: ');
+        var faltas = prompt('Digite a quantidade de faltas: ');
+
+        if ((nota >= media && faltas <= faltaMax)) {
+            // document.write('Está no bloco if(verdadeiro)')
+            document.write('Aprovado');
+        }
+        else {
+            // document.write('Está no bloco if(falso)')
+            document.write('Reprovado');
+        }
+
+        var resultado = (nota >= media && faltas <= faltaMax) ? 'Aprovado' : 'Reprovado';
+        document.write(resultado);
+
+    </script>
+</body>
+
+</html>
