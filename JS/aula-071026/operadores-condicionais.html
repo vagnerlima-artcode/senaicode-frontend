@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript - Operadores Condicionais</title>
+</head>
+
+<body>
+    <script>
+       var nota = prompt('Digite a nota:');
+       var numFaltas = prompt('Digite a quantidade faltas');
+       const media = 7;
+       const faltaMax = 15;
+       var status = null;
+
+    /*    
+    OPERADORES CONDICIONAIS
+        ==  Valores são iguais
+        === Valores e tipo iguais
+        != Valores diferentes
+        !== Valores e tipos diferentes
+        < Verica se o valor da esquerda é menor
+        > Verica se o valor da esquerda é maior
+        <= Verifica se o valor é menor ou igual
+        >= Verifica se o valor é maior ou igual    
+    
+    OPERADORES LOGICOS
+    && E
+    || OU
+    ! NEGAÇÃO
+   
+    */
+       if(nota >= media && numFaltas <= faltaMax ){
+        document.write('Aprovado');
+        status = true;
+       }else{
+        document.write('Reprovado');
+        status = false;
+       }
+
+       if(true){
+            document.write('<h1 style=color:green;>Parabéns!</h1>');
+       }else{
+            document.write('<h1 style=color:red;>Reprovado!</h1>');
+       }
+    </script>
+</body> 
+
+</html>
