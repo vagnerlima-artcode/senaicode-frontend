@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript - Functions</title>
+</head>
+
+<body>
+    <script>
+       function calcularArea(largura, comprimento){
+            var area = parseInt(largura) * parseInt(comprimento);
+            return area
+       }
+       var largura = prompt('Largura em metros');
+       var comprimento = prompt('Comprimento em metros')
+       var area = calcularArea(largura,comprimento);
+       document.write('O terreno possui ' + area + ' metros quadrados');
+
+       
+    </script>
+</body>
+
+</html>
