@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript - Condicionais e Operadores Comparação e Lógicos</title>
+</head>
+
+<body>
+    <script>
+        /* 
+        Operadores de comparação
+            ==  : compara os valores
+            === : compara tipo e valor
+            !=  : diferente valor
+            !== : diferentes valor e tipo
+            <   : Valor da esquerda menor que a direita
+            >   : Valor da esquerda maior que a direita
+            <=  : Valor da esquerda menor ou igual que a direita
+            >=  : Valor da esquerda maior ou igual que a direita
+        */
+        const media = 7;
+        const limitFaltas = 10;
+        let validar = null;
+
+        let nota = prompt('Digite a nota do aluno');
+        let faltas = prompt('Digite o número de faltas');
+
+        if (nota >= media) {
+            document.write('Tirou 7');
+        } else {
+            document.write('outro valor');
+        }
+        /*
+            Operadores Lógicos
+            E       &&
+            OU      ||
+            Negação !
+        */
+        if (nota >= media && faltas <= limitFaltas) {
+            document.write('Aprovado');
+            validar = true;
+        } else {
+            document.write('Reprovado');
+            validar = false;
+        }
+
+        if(validar==true){
+            document.write('<h1 style=color:green;>Parabéns</h1>');
+        }else{
+            document.write('<h1 style=color:red;>Estude mais</h1>');
+        }
+
+        // Operador Ternário
+        let idade = 18;
+
+        let status = idade >= 18 ? 'Maior de idade' : 'Menor de idade';
+       
+        console.log(status); // Saída: Maior de idade
+
+    </script>
+</body>
+
+
+</html>

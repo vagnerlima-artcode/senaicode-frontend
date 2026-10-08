@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript - Concatenação</title>
+</head>
+
+<body>
+    <!-- Concatenação -->
+
+    <script>
+        //Prompt salva os dados como do tipo String
+        let nome = prompt('Digite seu nome');
+        let idade = prompt('Digite sua idade');
+        document.write('<h1>Olá, ' + nome + ' sua idade é igual ' + idade + '</h1>');
+        
+        //Casting: parseInt(), parseFloat() toString()
+        let valor1 = '10';
+        let converInt = parseInt(valor1);
+        console.log(valor1);
+        console.log(typeof(valor1));
+        console.log(converInt);
+        console.log(typeof(converInt));
+
+        let teste = prompt('Digite sua nota');
+        let convertString = teste.toString()
+        document.write(convertString);
+        console.log(convertString);
+        console.log(typeof(convertString));
+
+        //toString() converter para String
+        //a função typeof(variavel) << exibe a tipo da variavel no console
+        let num = 40;
+        console.log(num.toString());
+        console.log(typeof(num.toString()));        
+    </script>
+</body>
+
+</html>
