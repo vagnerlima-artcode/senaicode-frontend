@@ -1,0 +1,13 @@
+.titulo-banner {
+    position: absolute;
+    top: 90px;
+    padding-left: 60px;
+    color: #fff;
+    font-size: 7rem;
+    line-height: 5rem;
+}
+
+#divisor {
+    background-color: blue;
+    color: white;
+}
