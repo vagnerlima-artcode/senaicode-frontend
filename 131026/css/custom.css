@@ -1,0 +1,56 @@
+.titulo-banner {
+    position: absolute;
+    top: 100px;
+    left: 5%;
+    color: #fff;
+    font-size: 7rem;
+    line-height: 5rem;
+}
+
+#btn-reserva {
+    position: absolute;
+    top: 600px;
+    left: 5%;
+}
+
+#divisor {
+    background-color: blue;
+    color: white;
+    font-size: .8rem;
+}
+
+a.nav-link {
+    border-right: 1px solid #fff;
+}
+
+.titulo-founder {
+    padding-bottom: 200px;
+}
+
+#reserve {
+    background-color: blue;
+    padding: 100px 200px;
+}
+
+#reserve p {
+    color: #fff;
+    font-size: 2.5rem;
+    line-height: 2.2rem;
+    margin-right: 100px;
+}
+
+
+.social-1{
+    padding: 50px 100px;
+    background-color: blue;
+}
+
+.social-2{
+    padding: 50px 100px;
+    background-color: black;
+}
+
+.social-3{
+    padding: 50px 100px;
+    background-color: purple;
+}
