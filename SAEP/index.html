@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel Integrado de Apontamentos Operacionais</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="app-container">
+    <!-- Coluna 1: Painel Lateral -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <img src="assets/logo.png" alt="Logo da Empresa" class="logo">
+        <h1 class="system-title">Apontamentos Operacionais</h1>
+      </div>
+
+      <div class="indicators-panel">
+        <div class="indicator-card">
+          <span class="indicator-label">Total de Apontamentos</span>
+          <span id="total-apontamentos" class="indicator-value">0</span>
+        </div>
+        <div class="indicator-card">
+          <span class="indicator-label">Horas Operacionais</span>
+          <span id="total-horas" class="indicator-value">0h</span>
+        </div>
+      </div>
+
+      <div id="user-profile-section" class="user-profile hidden">
+        <img id="user-avatar" src="" alt="Foto de Perfil do Operador" class="avatar-lg">
+        <h3 id="user-name" class="user-name-title"></h3>
+      </div>
+
+      <nav class="sidebar-nav">
+        <button id="btn-nav-registros" class="btn-nav" disabled>Registros</button>
+      </nav>
+
+      <footer class="sidebar-footer">
+        <p>Painel Operacional</p>
+        <div class="social-icons">
+          <img src="assets/instagram.svg" alt="Ícone Instagram">
+          <img src="assets/x.svg" alt="Ícone Twitter">
+          <img src="assets/linkedin.svg" alt="Ícone LinkedIn">
+        </div>
+        <span class="copyright">Copyright-2026</span>
+      </footer>
+    </aside>
+
+    <!-- Coluna 2: Conteúdo Principal -->
+    <main class="main-content">
+      <header class="top-header">
+        <button id="btn-auth-action" class="btn-login-top">Login</button>
+      </header>
+
+      <!-- Seção Feed e Filtros -->
+      <section id="feed-view" class="view-section">
+        <div class="filter-bar">
+          <button class="filter-btn active" data-category="todas">Todas</button>
+          <button class="filter-btn" data-category="manutenção">Manutenção</button>
+          <button class="filter-btn" data-category="operação">Operação</button>
+          <button class="filter-btn" data-category="inspeção">Inspeção</button>
+        </div>
+
+        <div id="cards-container" class="cards-feed"></div>
+
+        <div class="pagination-bar">
+          <button id="btn-first-page" class="btn-page">Primeira</button>
+          <button id="btn-prev-page" class="btn-page">Anterior</button>
+          <div id="page-numbers" class="page-numbers-container"></div>
+          <button id="btn-next-page" class="btn-page">Próxima</button>
+          <button id="btn-last-page" class="btn-page">Última</button>
+        </div>
+      </section>
+
+      <!-- Seção Formulário de Cadastro -->
+      <section id="form-view" class="view-section hidden">
+        <h2 class="form-title">Crie seu registro</h2>
+        <form id="record-form" class="record-form" novalidate>
+          <div class="form-group">
+            <label for="record-type">Tipo de Apontamento</label>
+            <select id="record-type" name="type">
+              <option value="">Selecione o tipo...</option>
+              <option value="manutenção">manutenção</option>
+              <option value="operação">operação</option>
+              <option value="inspeção">inspeção</option>
+            </select>
+            <span class="error-message" id="type-error"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="record-distance">Deslocamento/Área (metros)</label>
+            <input type="number" id="record-distance" name="distance" placeholder="Ex: 3500">
+            <span class="error-message" id="distance-error"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="record-time">Tempo de Execução (minutos)</label>
+            <input type="number" id="record-time" name="time" placeholder="Ex: 90">
+            <span class="error-message" id="time-error"></span>
+          </div>
+
+          <button type="submit" id="btn-submit-record" class="btn-primary-dark">Criar Registro</button>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <!-- Modal de Login -->
+  <div id="login-modal" class="modal-overlay hidden">
+    <div class="modal-card">
+      <button id="btn-close-modal" class="modal-close-icon" aria-label="Fechar modal">
+        <img src="assets/close.svg" alt="Ícone Fechar Modal">
+      </button>
+      <h2 class="modal-title">Autenticação</h2>
+      <form id="login-form" novalidate>
+        <div class="form-group">
+          <label for="login-email">E-mail</label>
+          <input type="email" id="login-email" name="email" placeholder="seu.email@empresa.com">
+          <span class="error-message" id="login-email-error"></span>
+        </div>
+        <div class="form-group">
+          <label for="login-password">Senha</label>
+          <input type="password" id="login-password" name="password" placeholder="Digite sua senha">
+          <span class="error-message" id="login-password-error"></span>
+        </div>
+        <div class="modal-actions">
+          <button type="button" id="btn-cancel-login" class="btn-cancel">Cancelar</button>
+          <button type="submit" class="btn-submit-login">Login</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAEP</title>
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    /* Cor */
+    aside,
+    footer {
+        background-color: #333;
+        color: #fff;
+        padding: 3rem;
+    }
+
+    /* Header */
+    header {
+        /* display: block; */
+        /* justify-content: space-between; */
+        /* align-items: center; */
+        /* padding: 0px 0px; */
+        /* background-color: #888; */
+        /* color: #fff; */
+    }
+
+    .header-main {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .logo img {
+        width: 150px;
+        height: auto;
+        text-align: center;
+    }
+
+    nav .menu {
+        display: flex;
+        list-style: none;
+        gap: 20px;
+        margin: 0;
+        padding: 0;
+        justify-content: center;
+    }
+
+    nav .menu a {
+        color: #000;
+        text-decoration: none;
+    }
+
+    nav .menu a:hover {
+        opacity: .5;
+    }
+
+    .logo {
+        text-align: center;
+    }
+
+    .painel {
+        margin-top: 30px;
+        text-align: center;
+    }
+
+    .painel-card {
+        border: 1px solid #fff;
+        border-radius: 30px;
+        margin-bottom: 30px;
+
+    }
+
+    button {
+        background-color: #333;
+        color: #fff;
+        padding: 10px 20px;
+    }
+
+    /* flex grid*/
+    .container {
+        display: flex;
+        gap: 1px;
+        flex-direction: row;
+    }
+
+    .container aside {
+        display: flex;
+        padding: 20px;
+        height: 900px;
+    }
+
+    .container aside {
+        display: block;
+    }
+
+    .col-20 {
+        flex: 0 0 20%;
+    }
+
+    .col-80 {
+        flex: 0 0 80%;
+    }
+
+    .header-main {
+        text-align: right;
+    }
+
+    .paginacao,
+    .filtro {
+        text-align: center;
+    }
+
+    /* footer */
+    footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 50px;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <aside class="col-20">
+            <header>
+                <div class="logo">
+                    <img src="assets/logo.png">
+                    <h3>Apontamentos Operacionais</h3>
+                </div>
+            </header>
+
+            <div class="painel">
+
+                <div class="painel-card">
+                    Total de Apontamentos
+                    <hr>
+                    <h1>0</h1>
+                </div>
+
+                <div class="painel-card">
+                    Horas Operacionais
+h                    <hr>
+                    <h1>0h</h1>
+                </div>
+
+                <nav class="sidebar-nav">
+                    <button>Registro</button>
+                </nav>
+            </div>
+
+            <footer class="footer-aside">2026 &copy; Todos os direitos reservados</footer>
+
+        </aside>
+
+        <main class="col-80">
+            <header class="header-main">
+                <button>Login</button>
+            </header>
+            <nav>
+                <hr>
+
+                <ul class="menu">
+                    <li><a href="#">Todos</a></li>
+                    <li><a href="#">Sobre</a></li>
+                    <li><a href="#">Outro</a></li>
+                    <li><a href="#">Contato</a></li>
+                </ul>
+            </nav>
+
+            <section>
+                <div class="filtro">
+                    <button>Todas</button>
+                    <button>Manutenção</button>
+                    <button>Operação</button>
+                    <button>Inspeção</button>
+                </div>
+
+                <div class="paginacao">
+                    <button>Primeira</button>
+                    <button>Anterior</button>
+                    <h3>0</h3>
+                    <button>Próxima</button>
+                    <button>Última</button>
+                </div>
+
+            </section>
+        </main>
+    </div>
+
+
+</body>
+
+</html>
