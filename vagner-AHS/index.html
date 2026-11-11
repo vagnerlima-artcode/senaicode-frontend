@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcards - Arquitetura de Hardware e Software</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+    <style>
+        .perspective {
+            perspective: 1000px;
+        }
+        .transform-style-3d {
+            transform-style: preserve-3d;
+        }
+        .backface-hidden {
+            backface-visibility: hidden;
+        }
+        .rotate-y-180 {
+            transform: rotateY(180deg);
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col font-sans">
+
+    <!-- Header -->
+    <header class="border-b border-slate-800 bg-slate-950 py-4 px-6 flex justify-between items-center shadow-md">
+        <div>
+            <h1 class="text-xl font-bold text-indigo-400">Flashcards de Estudo</h1>
+            <p class="text-xs text-slate-400">Arquitetura de Hardware, Software e Licenciamento</p>
+        </div>
+        <div class="text-sm font-semibold text-slate-300">
+            <span id="card-counter">1</span> / <span id="total-cards">25</span>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="flex-1 flex flex-col items-center justify-center p-4 max-w-4xl mx-auto w-full">
+        
+        <!-- Controls Bar -->
+        <div class="w-full flex justify-between items-center mb-6">
+            <button id="btn-shuffle" class="px-3 py-1.5 text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 rounded border border-slate-700 transition">
+                🔀 Embaralhar
+            </button>
+            <span class="text-xs text-slate-500">Clique no cartão para virar</span>
+            <button id="btn-reset" class="px-3 py-1.5 text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 rounded border border-slate-700 transition">
+                🔄 Reiniciar
+            </button>
+        </div>
+
+        <!-- Flashcard Area -->
+        <div class="w-full h-80 sm:h-96 perspective cursor-pointer group" id="flashcard-container">
+            <div id="flashcard" class="w-full h-full relative transform-style-3d transition-transform duration-500 rounded-2xl shadow-2xl">
+                
+                <!-- Front Side -->
+                <div class="absolute inset-0 w-full h-full backface-hidden bg-slate-800 border-2 border-indigo-500/40 rounded-2xl p-8 flex flex-col justify-between items-center text-center">
+                    <span class="text-xs uppercase tracking-wider text-indigo-400 font-semibold">Frente (Conceito / Pergunta)</span>
+                    <div id="card-front-text" class="text-lg sm:text-xl font-medium text-slate-100 my-auto">
+                        Carregando...
+                    </div>
+                    <div id="card-hint" class="text-xs text-slate-400 italic bg-slate-900/60 px-3 py-1.5 rounded-full border border-slate-700/50 max-w-full truncate">
+                        Dica indisponível
+                    </div>
+                </div>
+
+                <!-- Back Side -->
+                <div class="absolute inset-0 w-full h-full backface-hidden rotate-y-180 bg-slate-950 border-2 border-emerald-500/50 rounded-2xl p-8 flex flex-col justify-between items-center text-center">
+                    <span class="text-xs uppercase tracking-wider text-emerald-400 font-semibold">Verso (Resposta / Explicação)</span>
+                    <div id="card-back-text" class="text-base sm:text-lg text-slate-200 my-auto leading-relaxed">
+                        Carregando...
+                    </div>
+                    <span class="text-xs text-slate-500">Clique para voltar à frente</span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Navigation Controls -->
+        <div class="w-full flex justify-between items-center mt-8">
+            <button id="btn-prev" class="px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-medium rounded-xl shadow-lg transition flex items-center space-x-2">
+                <span>← Anterior</span>
+            </button>
+            <button id="btn-flip" class="px-6 py-3 bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium rounded-xl border border-slate-700 shadow transition">
+                🔄 Virar
+            </button>
+            <button id="btn-next" class="px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-medium rounded-xl shadow-lg transition flex items-center space-x-2">
+                <span>Próximo →</span>
+            </button>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-4 text-center text-xs text-slate-500 border-t border-slate-800">
+        Arquitetura de Hardware e Software • Flashcards Interativos de Revisão
+    </footer>
+
+    <script>
+        const flashcardsData = [
+            {
+                front: "Direito Autoral (Copyright) sobre programas de computador no Brasil",
+                back: "Proteção legal regida pela Lei nº 9.610/1998 e pela Lei do Software (Lei nº 9.609/1998), conferindo ao autor o direito exclusivo de uso, reprodução e comercialização da obra.",
+                hint: "Trata-se do modelo de proteção tradicional com 'todos os direitos reservados'."
+            },
+            {
+                front: "Função do INPI no contexto de programas de computador",
+                back: "Realizar o registro opcional do código-fonte do software para comprovar a autoria e a anterioridade do desenvolvimento.",
+                hint: "Órgão governamental responsável por marcas, patentes e registros de software no Brasil."
+            },
+            {
+                front: "Objeto protegido pelo registro de software no INPI",
+                back: "O código-fonte (a expressão textual do algoritmo). Ideias conceituais e algoritmos abstratos não são patenteáveis/registráveis.",
+                hint: "Diferença entre a ideia subjacente e a implementação em código."
+            },
+            {
+                front: "Conceito de Copyleft",
+                back: "Prática legal que utiliza os direitos autorais para garantir a liberdade de um software, exigindo que todas as modificações e trabalhos derivados permaneçam livres.",
+                hint: "Regra do 'compartilhamento sob a mesma licença' (ex.: GNU GPL)."
+            },
+            {
+                front: "Diferença principal entre Licença Livre Permissiva e Licença com Copyleft Forte",
+                back: "Licenças permissivas (MIT, Apache) permitem derivar softwares proprietários, enquanto o Copyleft Forte (GPL) exige que códigos derivados também sejam abertos.",
+                hint: "Pense sobre a obrigatoriedade de manter o código aberto nas obras derivadas."
+            },
+            {
+                front: "Licenças Creative Commons",
+                back: "Conjunto de licenças padronizadas que permitem a autores conceder permissões de uso, distribuição e modificação sobre obras criativas e mídias.",
+                hint: "Geralmente aplicadas a imagens, músicas e textos, com cláusulas como BY, NC, ND e SA."
+            },
+            {
+                front: "Cláusula Creative Commons BY (Atribuição)",
+                back: "Exige que a utilização da obra dê o devido crédito ao autor original.",
+                hint: "Requisito básico presente em quase todas as variações das licenças Creative Commons."
+            },
+            {
+                front: "Cláusulas Creative Commons NC (Não Comercial) e ND (Sem Derivações)",
+                back: "NC proíbe a exploração comercial da obra; ND proíbe a modificação ou criação de obras derivadas a partir da original.",
+                hint: "Uma restringe lucro e a outra restringe edições ou remoldagens."
+            },
+            {
+                front: "Função principal do Sistema Operacional (SO)",
+                back: "Atuar como intermediário entre as aplicações e o hardware, gerenciando CPU, memória, armazenamento e dispositivos de Entrada/Saída.",
+                hint: "Camada de abstração que simplifica o uso dos componentes físicos do computador."
+            },
+            {
+                front: "Kernel do Sistema Operacional",
+                back: "O núcleo central do SO responsável por gerenciar recursos do sistema, alocação de memória, processos e comunicação direta com o hardware em modo privilegiado.",
+                hint: "Componente básico que roda em Kernel Mode (Modo Supervisor)."
+            },
+            {
+                front: "Mecanismo de Chamada de Sistema (System Call)",
+                back: "Interface que permite às aplicações em modo usuário solicitarem serviços executados exclusivamente pelo Kernel do sistema operacional.",
+                hint: "A ponte segura entre o Modo Usuário e o Modo Kernel."
+            },
+            {
+                front: "Conceito de Arquitetura CISC (Complex Instruction Set Computer)",
+                back: "Arquitetura com amplo conjunto de instruções complexas gravadas no hardware, capazes de realizar múltiplas operações em uma única instrução.",
+                hint: "Arquitetura típica dos processadores desktop x86/x64 da Intel e AMD."
+            },
+            {
+                front: "Conceito de Arquitetura RISC (Reduced Instruction Set Computer)",
+                back: "Arquitetura focada em um conjunto reduzido e simplificado de instruções de tamanho fixo, otimizadas para execução rápida em poucos ciclos de clock.",
+                hint: "Arquitetura que prioriza eficiência energética, amplamente utilizada pela ARM em smartphones."
+            },
+            {
+                front: "Vantagem de eficiência energética do RISC em comparação com o CISC",
+                back: "O circuito de decodificação de instruções é mais simples, reduzindo a complexidade de transistores e o consumo elétrico do chip.",
+                hint: "Fator determinante para o uso em dispositivos móveis alimentados por bateria."
+            },
+            {
+                front: "Limitação física da interface SATA III no desempenho de SSDs",
+                back: "A interface SATA III possui um limite de largura de banda de aproximadamente $600\\text{ MB/s}$ (ou $6\\text{ Gbps}$), gargalando o desempenho dos chips NAND Flash modernos.",
+                hint: "Utiliza a notação LaTeX em MB/s para limites físicos de transferência."
+            },
+            {
+                front: "Tecnologia de Armazenamento NVMe (Non-Volatile Memory Express)",
+                back: "Protocolo de transporte projetado para SSDs que se comunica diretamente com a CPU via barramento PCI Express (PCIe), oferecendo altas taxas de transferência e baixíssima latência.",
+                hint: "Contorna a interface legado SATA para obter velocidades acima de $3500\\text{ MB/s}$."
+            },
+            {
+                front: "Diferença entre HD magnético e SSD (Solid State Drive)",
+                back: "O HD utiliza partes mecânicas e discos magnéticos para armazenar dados; o SSD utiliza chips eletrônicos de memória não volátil NAND Flash.",
+                hint: "Dispositivo eletromecânico vs. Dispositivo de estado sólido (sem peças móveis)."
+            },
+            {
+                front: "API (Application Programming Interface)",
+                back: "Conjunto de rotinas, protocolos e padrões de comunicação que permite a integração padronizada e segura entre diferentes aplicações de software.",
+                hint: "Funciona como um 'contrato de serviço' entre dois sistemas de software distintos."
+            },
+            {
+                front: "Papel das APIs em serviços de streaming (Spotify e Netflix)",
+                back: "Permitir a comunicação entre os aplicativos de clientes (Smart TVs, celulares) e os servidores de autenticação, catálogos e streaming de dados em nuvem.",
+                hint: "Como o app do celular consegue listar suas playlists guardadas no servidor."
+            },
+            {
+                front: "Arquitetura REST / RESTful em APIs Web",
+                back: "Estilo arquitetural para APIs web que utiliza verbos HTTP (`GET`, `POST`, `PUT`, `DELETE`) e tráfego de dados em formatos leves como JSON.",
+                hint: "Lembre-se de utilizar backticks para marcar tags e métodos como `GET` e `POST`."
+            },
+            {
+                front: "Modelo de distribuição por Assinatura (SaaS)",
+                back: "Software oferecido como um serviço hospedado na nuvem, onde o cliente paga um valor recorrente por tempo determinado de acesso, sem licença perpétua.",
+                hint: "Modelo de negócios adotado por plataformas como Netflix, Spotify e Microsoft 365."
+            },
+            {
+                front: "Firmware UEFI vs. BIOS Legada",
+                back: "O UEFI executa em modo 32/64 bits, suporta tabela de partição GPT (discos $> 2\\text{ TB}$) e Secure Boot; a BIOS atua em 16 bits com tabela MBR (limite de $2\\text{ TB}$).",
+                hint: "A revolução na inicialização de hardware computacional moderno."
+            },
+            {
+                front: "Diferença conceitual entre Software Livre e Código Aberto (Open Source)",
+                back: "O Software Livre foca nas liberdades éticas e sociais dos usuários (FSF); o Código Aberto (OSI) foca na eficiência técnica e no modelo colaborativo de desenvolvimento.",
+                hint: "Aspectos éticos (liberdade do usuário) vs. Aspectos pragmáticos (metodologia de software)."
+            },
+            {
+                front: "Drivers de dispositivo em Modo Kernel vs. Modo Usuário",
+                back: "Drivers em Modo Kernel possuem privilégio total ao hardware e podem travar o SO se falharem; em Modo Usuário, funcionam em sandbox isolada com menor impacto.",
+                hint: "Relacionado às telas azuis de erro (BSOD) ou Kernel Panic."
+            },
+            {
+                front: "Conceito de Computação em Nuvem IaaS vs. PaaS",
+                back: "IaaS fornece infraestrutura básica (máquinas virtuais e rede); PaaS entrega ambientes pré-configurados com SO e runtime para implantação direta de aplicações.",
+                hint: "Alugar a máquina limpa vs. Alugar o ambiente pronto com o compilador instalado."
+            }
+        ];
+
+        let currentIndex = 0;
+        let isFlipped = false;
+        let cards = [...flashcardsData];
+
+        const flashcardEl = document.getElementById('flashcard');
+        const containerEl = document.getElementById('flashcard-container');
+        const frontTextEl = document.getElementById('card-front-text');
+        const backTextEl = document.getElementById('card-back-text');
+        const hintEl = document.getElementById('card-hint');
+        const counterEl = document.getElementById('card-counter');
+        const totalEl = document.getElementById('total-cards');
+
+        function formatText(text) {
+            let formatted = text.replace(/`([^`]+)`/g, '<code class="bg-slate-900 px-1.5 py-0.5 rounded text-pink-400 font-mono text-sm border border-slate-700">$1</code>');
+            return formatted;
+        }
+
+        function updateCard() {
+            if (isFlipped) {
+                flashcardEl.classList.remove('rotate-y-180');
+                isFlipped = false;
+                setTimeout(renderContent, 200);
+            } else {
+                renderContent();
+            }
+        }
+
+        function renderContent() {
+            const card = cards[currentIndex];
+            frontTextEl.innerHTML = formatText(card.front);
+            backTextEl.innerHTML = formatText(card.back);
+            hintEl.innerText = card.hint ? `💡 Dica: ${card.hint}` : '';
+            counterEl.innerText = currentIndex + 1;
+            totalEl.innerText = cards.length;
+
+            if (window.renderMathInElement) {
+                window.renderMathInElement(frontTextEl);
+                window.renderMathInElement(backTextEl);
+            }
+        }
+
+        function flipCard() {
+            isFlipped = !isFlipped;
+            if (isFlipped) {
+                flashcardEl.classList.add('rotate-y-180');
+            } else {
+                flashcardEl.classList.remove('rotate-y-180');
+            }
+        }
+
+        function nextCard() {
+            currentIndex = (currentIndex + 1) % cards.length;
+            updateCard();
+        }
+
+        function prevCard() {
+            currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+            updateCard();
+        }
+
+        function shuffleCards() {
+            for (let i = cards.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [cards[i], cards[j]] = [cards[j], cards[i]];
+            }
+            currentIndex = 0;
+            updateCard();
+        }
+
+        function resetCards() {
+            cards = [...flashcardsData];
+            currentIndex = 0;
+            updateCard();
+        }
+
+        // Event Listeners
+        containerEl.addEventListener('click', flipCard);
+        document.getElementById('btn-flip').addEventListener('click', flipCard);
+        document.getElementById('btn-next').addEventListener('click', (e) => { e.stopPropagation(); nextCard(); });
+        document.getElementById('btn-prev').addEventListener('click', (e) => { e.stopPropagation(); prevCard(); });
+        document.getElementById('btn-shuffle').addEventListener('click', shuffleCards);
+        document.getElementById('btn-reset').addEventListener('click', resetCards);
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextCard();
+            if (e.key === 'ArrowLeft') prevCard();
+            if (e.key === ' ' || e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+                e.preventDefault();
+                flipCard();
+            }
+        });
+
+        // Initialize
+        renderContent();
+    </script>
+</body>
+</html>
