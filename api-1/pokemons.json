@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "nome": "Pikachu",
+    "tipo": "Elétrico"
+  },
+  {
+    "id": 2,
+    "nome": "Charmander",
+    "tipo": "Fogo"
+  },
+  {
+    "id": 3,
+    "nome": "Bulbasaur",
+    "tipo": "Planta"
+  }
+]
